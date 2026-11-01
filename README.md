@@ -1,4 +1,4 @@
-# TVET Career Platform
+# IntelliMatch
 
 Vue 3 + TypeScript + Inertia + Laravel, with PostgreSQL and Docker.
 
