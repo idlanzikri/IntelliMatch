@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { Compass, GraduationCap, LayoutGrid } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
@@ -17,6 +17,7 @@ import {
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
 
+const page = usePage();
 const mainNavItems: NavItem[] = [
     { title: 'My career profile', href: '/student/profile', icon: GraduationCap },
     { title: 'Explore careers', href: '/dashboard#careers', icon: Compass },
@@ -45,7 +46,7 @@ const footerNavItems: NavItem[] = [];
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
+            <NavMain :items="mainNavItems" /><Link v-if="page.props.auth.user.is_admin" href="/admin" class="mx-4 rounded-lg bg-teal-50 px-4 py-3 text-sm font-semibold text-teal-800">Admin workspace ↗</Link>
         </SidebarContent>
 
         <SidebarFooter>
@@ -55,4 +56,5 @@ const footerNavItems: NavItem[] = [];
     </Sidebar>
     <slot />
 </template>
+
 

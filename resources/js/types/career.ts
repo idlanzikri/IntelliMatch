@@ -6,7 +6,7 @@ export interface StudentProfile {
     skills: string[] | null;
 }
 export interface CareerMatch {
-    id: string;
+    id: number;
     title: string;
     sector: string;
     description: string;

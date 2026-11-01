@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Career;
 
+use App\Models\Career;
+use App\Models\StudentProfile;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +16,8 @@ class UpdateProfileRequest extends FormRequest
 
     public function rules(): array
     {
-        $skills = array_unique(array_merge(...array_column(config('careers'), 'skills')));
+        $existing = StudentProfile::where('user_id', $this->user()->id)->first()?->skills ?? [];
+        $skills = array_unique(array_merge($existing, ...Career::where('is_active', true)->pluck('skills')->all()));
 
         return [
             'institution' => ['nullable', 'string', 'max:180'],

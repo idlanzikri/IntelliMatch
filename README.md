@@ -59,3 +59,15 @@ Keep matching rules in backend services and enforce institution boundaries using
 - Original supplied branding is in `public/brand/intellimatch.jpeg`.
 
 AI resume parsing, live jobs, learning-resource integration, and institution/admin workflows remain future work. Existing authentication follows the starter's Fortify flow.
+
+## Account seeders
+
+Run `docker compose exec app php artisan db:seed` to run SuperAdminSeeder, StudentSeeder, and InstitutionSeeder. Seeders are repeatable and reset passwords to the configured seed values while preserving existing names and student profiles.
+
+- Superadmin: idlan.skyrem@gmail.com (verified, all current admin access).
+- Demo student: student@intellimatch.test (verified).
+- Demo institution: institution@intellimatch.test (verified; institutional workflows are not yet implemented).
+- Demo passwords use SEED_DEMO_PASSWORD in the local .env. Demo accounts are only seeded in local/testing environments.
+- The default seed password is `P@ssw0rd`; override SEED_SUPERADMIN_PASSWORD and SEED_DEMO_PASSWORD as needed. Rerunning seeders resets these accounts to the configured passwords.
+- Public registration always creates students; role and admin flags are not mass assignable.
+
