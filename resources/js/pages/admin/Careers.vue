@@ -1,14 +1,142 @@
 <script setup lang="ts">
-import { Head, router } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import CareerForm from '@/components/admin/CareerForm.vue';
-import TablePagination from '@/components/admin/TablePagination.vue';
-import type { AdminCareer, Paginated } from '@/types/admin';
-const props = defineProps<{ careers: Paginated<AdminCareer>; filters: { search: string } }>();
+import { Head, router } from "@inertiajs/vue3";
+import { ref } from "vue";
+import CareerForm from "@/components/admin/CareerForm.vue";
+import TablePagination from "@/components/admin/TablePagination.vue";
+import type { AdminCareer, Paginated } from "@/types/admin";
+const props = defineProps<{
+    careers: Paginated<AdminCareer>;
+    filters: { search: string };
+}>();
 const search = ref(props.filters.search);
 const editing = ref<AdminCareer | null>(null);
 const formOpen = ref(false);
-function open(career: AdminCareer | null) { editing.value = career; formOpen.value = true; }
-function submit() { router.get('/admin/careers', { search: search.value }, { preserveState: true, replace: true }); }
+function open(career: AdminCareer | null) {
+    editing.value = career;
+    formOpen.value = true;
+}
+function submit() {
+    router.get(
+        "/admin/careers",
+        { search: search.value },
+        { preserveState: true, replace: true },
+    );
+}
 </script>
-<template><Head title="Career catalogue" /><div class="flex flex-wrap items-center justify-between gap-5"><div><p class="text-xs font-bold tracking-widest text-teal-700 uppercase">Guide their next step</p><h1 class="mt-2 text-3xl font-semibold">Career catalogue</h1><p class="mt-3 text-slate-500">Maintain career descriptions and skills used in student matching.</p></div><button class="rounded-lg bg-teal-700 px-5 py-3 text-sm font-semibold text-white" @click="open(null)">+ Create career</button></div><form class="my-7 flex max-w-lg gap-3" @submit.prevent="submit"><input v-model="search" aria-label="Search careers by title" placeholder="Search career titles" class="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm" /><button class="rounded-lg bg-slate-800 px-5 py-3 text-sm font-semibold text-white">Search</button></form><CareerForm v-if="formOpen" :key="editing?.id || 'new'" :career="editing" @close="formOpen = false" /><section class="overflow-hidden rounded-xl border border-slate-200 bg-white"><div class="overflow-x-auto"><table class="w-full text-left text-sm"><thead class="bg-slate-100 text-xs tracking-wider text-slate-500 uppercase"><tr><th class="p-5">Career</th><th class="p-5">Required skills</th><th class="p-5">Visibility</th><th class="p-5"><span class="sr-only">Actions</span></th></tr></thead><tbody><tr v-for="career in careers.data" :key="career.id" class="border-t border-slate-100"><td class="p-5"><p class="font-semibold">{{ career.title }}</p><p class="mt-1 text-slate-500">{{ career.sector }}</p></td><td class="max-w-xs p-5 leading-6 text-slate-500">{{ career.skills.join(', ') }}</td><td class="p-5"><span class="rounded-full px-3 py-1 text-xs font-medium" :class="career.is_active ? 'bg-teal-50 text-teal-700' : 'bg-slate-100 text-slate-500'">{{ career.is_active ? 'Published' : 'Draft' }}</span></td><td class="p-5"><button :aria-label="`Edit ${career.title}`" class="font-semibold text-teal-700" @click="open(career)">Edit</button></td></tr><tr v-if="!careers.data.length"><td colspan="4" class="p-12 text-center text-slate-500">No careers found. Create a career or try another search.</td></tr></tbody></table></div><TablePagination :current="careers.current_page" :last="careers.last_page" :total="careers.total" :previous="careers.prev_page_url" :next="careers.next_page_url" /></section><p class="mt-5 text-xs leading-6 text-slate-500">To remove a career from student results, edit it and turn off publishing. Existing student skills are preserved.</p></template>
+<template>
+    <Head title="Career catalogue" />
+    <div class="flex flex-wrap items-center justify-between gap-5">
+        <div>
+            <p
+                class="text-xs font-bold tracking-widest text-teal-700 uppercase"
+            >
+                Guide their next step
+            </p>
+            <h1 class="mt-2 text-3xl font-semibold">Career catalogue</h1>
+            <p class="mt-3 text-slate-500">
+                Maintain career descriptions and skills used in student
+                matching.
+            </p>
+        </div>
+        <button
+            class="rounded-lg bg-teal-700 px-5 py-3 text-sm font-semibold text-white"
+            @click="open(null)"
+        >
+            + Create career
+        </button>
+    </div>
+    <form class="my-7 flex max-w-lg gap-3" @submit.prevent="submit">
+        <input
+            v-model="search"
+            aria-label="Search careers by title"
+            placeholder="Search career titles"
+            class="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm"
+        /><button
+            class="rounded-lg bg-slate-800 px-5 py-3 text-sm font-semibold text-white"
+        >
+            Search
+        </button>
+    </form>
+    <CareerForm
+        v-if="formOpen"
+        :key="editing?.id || 'new'"
+        :career="editing"
+        @close="formOpen = false"
+    />
+    <section
+        class="overflow-hidden rounded-xl border border-slate-200 bg-white"
+    >
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+                <thead
+                    class="bg-slate-100 text-xs tracking-wider text-slate-500 uppercase"
+                >
+                    <tr>
+                        <th class="p-5">Career</th>
+                        <th class="p-5">Required skills</th>
+                        <th class="p-5">Visibility</th>
+                        <th class="p-5">
+                            <span class="sr-only">Actions</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        v-for="career in careers.data"
+                        :key="career.id"
+                        class="border-t border-slate-100"
+                    >
+                        <td class="p-5">
+                            <p class="font-semibold">{{ career.title }}</p>
+                            <p class="mt-1 text-slate-500">
+                                {{ career.sector }}
+                            </p>
+                        </td>
+                        <td class="max-w-xs p-5 leading-6 text-slate-500">
+                            {{ career.skills.join(", ") }}
+                        </td>
+                        <td class="p-5">
+                            <span
+                                class="rounded-full px-3 py-1 text-xs font-medium"
+                                :class="
+                                    career.is_active
+                                        ? 'bg-teal-50 text-teal-700'
+                                        : 'bg-slate-100 text-slate-500'
+                                "
+                                >{{
+                                    career.is_active ? "Published" : "Draft"
+                                }}</span
+                            >
+                        </td>
+                        <td class="p-5">
+                            <button
+                                :aria-label="`Edit ${career.title}`"
+                                class="font-semibold text-teal-700"
+                                @click="open(career)"
+                            >
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                    <tr v-if="!careers.data.length">
+                        <td colspan="4" class="p-12 text-center text-slate-500">
+                            No careers found. Create a career or try another
+                            search.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <TablePagination
+            :current="careers.current_page"
+            :last="careers.last_page"
+            :total="careers.total"
+            :previous="careers.prev_page_url"
+            :next="careers.next_page_url"
+        />
+    </section>
+    <p class="mt-5 text-xs leading-6 text-slate-500">
+        To remove a career from student results, edit it and turn off
+        publishing. Existing student skills are preserved.
+    </p>
+</template>

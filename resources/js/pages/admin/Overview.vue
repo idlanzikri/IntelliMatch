@@ -1,5 +1,101 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
-defineProps<{ stats: { students: number; profiles: number; careers: number; activeCareers: number }; recentStudents: { id: number; name: string; email: string }[] }>();
+import { Head, Link } from "@inertiajs/vue3";
+defineProps<{
+    stats: {
+        students: number;
+        profiles: number;
+        careers: number;
+        activeCareers: number;
+    };
+    recentStudents: { id: number; name: string; email: string }[];
+}>();
 </script>
-<template><Head title="Admin overview" /><p class="mb-2 text-xs font-bold tracking-widest text-teal-700 uppercase">Platform overview</p><h1 class="text-3xl font-semibold tracking-tight">A clearer picture of your community.</h1><p class="mt-3 text-slate-500">Manage the people and career information behind IntelliMatch.</p><section class="my-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"><article v-for="item in [{ label: 'Registered students', value: stats.students }, { label: 'Student profiles', value: stats.profiles }, { label: 'Career profiles', value: stats.careers }, { label: 'Published careers', value: stats.activeCareers }]" :key="item.label" class="rounded-xl border border-slate-200 bg-white p-6"><p class="text-sm text-slate-500">{{ item.label }}</p><p class="mt-4 text-4xl font-semibold text-[#123c59]">{{ item.value }}</p></article></section><div class="grid gap-6 xl:grid-cols-[1.4fr_1fr]"><section class="rounded-xl border border-slate-200 bg-white"><div class="flex items-center justify-between border-b border-slate-100 p-6"><h2 class="text-lg font-semibold">Recently joined</h2><Link href="/admin/students" class="text-sm font-medium text-teal-700">View students →</Link></div><div v-if="!recentStudents.length" class="p-10 text-center text-slate-500">No students yet. New registrations will appear here.</div><div v-for="student in recentStudents" :key="student.id" class="flex items-center gap-4 border-b border-slate-100 p-5 last:border-0"><span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-teal-50 font-semibold text-teal-800">{{ student.name.slice(0, 1).toUpperCase() }}</span><div class="min-w-0"><p class="font-medium">{{ student.name }}</p><p class="truncate text-sm text-slate-500">{{ student.email }}</p></div></div></section><section class="rounded-xl bg-[#092c4f] p-7 text-white"><p class="text-xs font-semibold tracking-widest text-cyan-200 uppercase">Career guidance starts here</p><h2 class="mt-5 text-2xl font-semibold">Keep career information useful.</h2><p class="mt-4 text-sm leading-7 text-blue-100">Update required skills and descriptions as your catalogue develops. Published careers appear in student matching; drafts stay private.</p><Link href="/admin/careers" class="mt-7 inline-block rounded-lg bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-900">Manage career catalogue ↗</Link><p class="mt-6 text-xs leading-6 text-blue-200">Matching currently uses skill coverage. These figures show platform records, not employment outcomes.</p></section></div></template>
+<template>
+    <Head title="Admin overview" />
+    <p class="mb-2 text-xs font-bold tracking-widest text-teal-700 uppercase">
+        Platform overview
+    </p>
+    <h1 class="text-3xl font-semibold tracking-tight">
+        A clearer picture of your community.
+    </h1>
+    <p class="mt-3 text-slate-500">
+        Manage the people and career information behind IntelliMatch.
+    </p>
+    <section class="my-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <article
+            v-for="item in [
+                { label: 'Registered students', value: stats.students },
+                { label: 'Student profiles', value: stats.profiles },
+                { label: 'Career profiles', value: stats.careers },
+                { label: 'Published careers', value: stats.activeCareers },
+            ]"
+            :key="item.label"
+            class="rounded-xl border border-slate-200 bg-white p-6"
+        >
+            <p class="text-sm text-slate-500">{{ item.label }}</p>
+            <p class="mt-4 text-4xl font-semibold text-[#123c59]">
+                {{ item.value }}
+            </p>
+        </article>
+    </section>
+    <div class="grid gap-6 xl:grid-cols-[1.4fr_1fr]">
+        <section class="rounded-xl border border-slate-200 bg-white">
+            <div
+                class="flex items-center justify-between border-b border-slate-100 p-6"
+            >
+                <h2 class="text-lg font-semibold">Recently joined</h2>
+                <Link
+                    href="/admin/students"
+                    class="text-sm font-medium text-teal-700"
+                    >View students →</Link
+                >
+            </div>
+            <div
+                v-if="!recentStudents.length"
+                class="p-10 text-center text-slate-500"
+            >
+                No students yet. New registrations will appear here.
+            </div>
+            <div
+                v-for="student in recentStudents"
+                :key="student.id"
+                class="flex items-center gap-4 border-b border-slate-100 p-5 last:border-0"
+            >
+                <span
+                    class="flex size-10 shrink-0 items-center justify-center rounded-full bg-teal-50 font-semibold text-teal-800"
+                    >{{ student.name.slice(0, 1).toUpperCase() }}</span
+                >
+                <div class="min-w-0">
+                    <p class="font-medium">{{ student.name }}</p>
+                    <p class="truncate text-sm text-slate-500">
+                        {{ student.email }}
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="rounded-xl bg-[#092c4f] p-7 text-white">
+            <p
+                class="text-xs font-semibold tracking-widest text-cyan-200 uppercase"
+            >
+                Career guidance starts here
+            </p>
+            <h2 class="mt-5 text-2xl font-semibold">
+                Keep career information useful.
+            </h2>
+            <p class="mt-4 text-sm leading-7 text-blue-100">
+                Update required skills and descriptions as your catalogue
+                develops. Published careers appear in student matching; drafts
+                stay private.
+            </p>
+            <Link
+                href="/admin/careers"
+                class="mt-7 inline-block rounded-lg bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-900"
+                >Manage career catalogue ↗</Link
+            >
+            <p class="mt-6 text-xs leading-6 text-blue-200">
+                Matching currently uses skill coverage. These figures show
+                platform records, not employment outcomes.
+            </p>
+        </section>
+    </div>
+</template>
