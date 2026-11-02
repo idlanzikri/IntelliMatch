@@ -24,10 +24,11 @@ class InstitutionSeeder extends Seeder
         foreach ($names as $index => $name) {
             $number = $index + 1;
             $institution = Institution::updateOrCreate(['code' => 'DEMO-TVET-'.$number], ['name' => $name]);
-            $email = $number === 1 ? config('seed.institution_email') : 'institution'.$number.'@intellimatch.test';
+            $email = 'institution'.$number.'@intellimatch.test';
             $staff = SeedAccount::save($email, $name, 'institution', config('seed.demo_password'));
             $staff->institution_id = $institution->id;
             $staff->save();
         }
     }
 }
+

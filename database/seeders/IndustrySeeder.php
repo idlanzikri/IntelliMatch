@@ -50,7 +50,7 @@ class IndustrySeeder extends Seeder
         foreach ($names as $index => $name) {
             $number = $index + 1;
             $career = $careers[$index % $careers->count()];
-            $email = $number === 1 ? 'industry@intellimatch.test' : 'industry'.$number.'@intellimatch.test';
+            $email = 'industry'.$number.'@intellimatch.test';
             $user = SeedAccount::save($email, $name, 'industry', config('seed.demo_password'));
 
             $company = Company::firstOrNew(['user_id' => $user->id]);
@@ -90,3 +90,4 @@ class IndustrySeeder extends Seeder
         }
     }
 }
+

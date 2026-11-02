@@ -73,7 +73,7 @@ class StudentSeeder extends Seeder
             $number = $index + 1;
             $institutionIndex = intdiv($index, 6);
             $institution = $institutions[$institutionIndex];
-            $email = $number === 1 ? config('seed.student_email') : 'student'.$number.'@intellimatch.test';
+            $email = 'student'.$number.'@intellimatch.test';
 
             $user = SeedAccount::save($email, $name, 'student', config('seed.demo_password'));
             $user->institution_id = $institution->id;
@@ -91,3 +91,4 @@ class StudentSeeder extends Seeder
         }
     }
 }
+

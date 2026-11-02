@@ -77,11 +77,11 @@ docker compose exec app php artisan db:seed
 The default seeder runs SuperAdminSeeder, InstitutionSeeder, StudentSeeder, and IndustrySeeder in that order:
 
 - Superadmin: `idlan.skyrem@gmail.com` (verified, all current admin access).
-- 5 institutions and staff accounts: `institution@intellimatch.test`, then `institution2@intellimatch.test` through `institution5@intellimatch.test`.
-- 30 students: `student@intellimatch.test`, then `student2@intellimatch.test` through `student30@intellimatch.test`. Each institution has 6 linked students with populated career profiles.
-- 15 industry accounts: `industry@intellimatch.test`, then `industry2@intellimatch.test` through `industry15@intellimatch.test`. Each has an approved company and 3–5 published vacancies (60 total), with future closing dates.
+- 5 institutions and staff accounts: `institution1@intellimatch.test` through `institution5@intellimatch.test`.
+- 30 students: `student1@intellimatch.test` through `student30@intellimatch.test`. Each institution has 6 linked students with populated career profiles.
+- 15 industry accounts: `industry1@intellimatch.test` through `industry15@intellimatch.test`. Each has an approved company and 3–5 published vacancies (60 total), with future closing dates.
 - All seeded accounts are email verified. Demo data is only seeded in `local`/`testing` environments.
-- The default password is `P@ssw0rd`. Override `SEED_SUPERADMIN_PASSWORD` and `SEED_DEMO_PASSWORD` in `.env` as needed. `SEED_STUDENT_EMAIL` and `SEED_INSTITUTION_EMAIL` override the first student and institution login addresses.
+- The default password is `P@ssw0rd`. Override `SEED_SUPERADMIN_PASSWORD` and `SEED_DEMO_PASSWORD` in `.env` as needed. Demo email addresses use fixed numbered ranges so each account has a unique email.
 - Rerunning seeders resets passwords to the configured values and refreshes demo profiles, institution links, companies, and vacancies while preserving existing account names. It does not duplicate the seeded records.
 - Public registration always creates students; role and admin flags are not mass assignable.
 
@@ -101,4 +101,5 @@ The default seeder runs SuperAdminSeeder, InstitutionSeeder, StudentSeeder, and 
 Register as Industry / Employer, verify email, and open /industry. Submit company details, then an administrator approves the company at /admin/companies. Changes to company details require renewed approval. Approved employers can publish jobs and internships; other statuses remain hidden from /opportunities. All employer writes are scoped to their company. Students apply through HTTP/HTTPS employer links; no student resumes are exposed.
 
 Run `docker compose exec app php artisan db:seed --class=IndustrySeeder` to seed only the 15 demo industry accounts using `SEED_DEMO_PASSWORD`. Their companies are approved and contain 3–5 sample published vacancies each. Logo upload, application tracking, and vacancy-specific AI scoring are not implemented.
+
 
