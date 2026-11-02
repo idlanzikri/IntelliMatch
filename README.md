@@ -71,3 +71,14 @@ Run `docker compose exec app php artisan db:seed` to run SuperAdminSeeder, Stude
 - The default seed password is `P@ssw0rd`; override SEED_SUPERADMIN_PASSWORD and SEED_DEMO_PASSWORD as needed. Rerunning seeders resets these accounts to the configured passwords.
 - Public registration always creates students; role and admin flags are not mass assignable.
 
+
+## Institution workspace
+
+- `/institution` provides scoped totals, common self-reported skills, and a searchable student directory.
+- `/institution/students/{id}` shows a linked student's profile and published career alignment.
+- Institution access requires a verified institution-role account with a server-assigned `institution_id`.
+- Profile institution text never grants membership. Cross-institution student URLs return 404.
+- The demo institution is `DEMO-TVET`; InstitutionSeeder links demo institution staff and an unassigned demo student.
+- Link existing students or institution staff with `docker compose exec app php artisan app:link-institution email@example.com DEMO-TVET`.
+- Institution logins redirect from `/dashboard` to `/institution`.
+- Programme administration, exports, and counselling notes are not implemented in this release.

@@ -13,8 +13,12 @@ use Inertia\Response;
 
 class CareerController extends Controller
 {
-    public function index(ViewCareerRequest $request, ShowDashboardAction $action): Response
+    public function index(ViewCareerRequest $request, ShowDashboardAction $action): Response|RedirectResponse
     {
+        if ($request->user()->role === 'institution') {
+            return to_route('institution.overview');
+        }
+
         return Inertia::render('Dashboard', $action->execute($request));
     }
 

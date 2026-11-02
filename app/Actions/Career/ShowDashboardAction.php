@@ -11,8 +11,11 @@ class ShowDashboardAction
     public function execute(ViewCareerRequest $request): array
     {
         $profile = StudentProfile::where('user_id', $request->user()->id)->first();
+
         $skills = $profile?->skills ?? [];
+
         $catalogue = Career::where('is_active', true)->orderBy('id')->get()->toArray();
+        
         $careers = collect($catalogue)->map(function (array $career) use ($skills) {
             $matched = array_values(array_intersect($career['skills'], $skills));
             $career['matched'] = $matched;

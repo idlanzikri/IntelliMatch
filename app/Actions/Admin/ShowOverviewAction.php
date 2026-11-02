@@ -18,6 +18,7 @@ class ShowOverviewAction
                 'careers' => Career::count(),
                 'activeCareers' => Career::where('is_active', true)->count(),
             ],
+            
             'recentStudents' => User::where('role', 'student')->latest()->limit(5)->get(['id', 'name', 'email', 'created_at']),
         ];
     }

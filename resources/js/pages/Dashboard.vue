@@ -3,14 +3,21 @@ import { Head, Link, usePage } from "@inertiajs/vue3";
 import { ArrowUpRight, Compass, GraduationCap, Sparkles } from "@lucide/vue";
 import CareerCard from "@/components/career/CareerCard.vue";
 import type { CareerMatch, StudentProfile } from "@/types/career";
-defineProps<{ profile: StudentProfile | null; careers: CareerMatch[] }>();
+
+defineProps<{
+    profile: StudentProfile | null;
+    careers: CareerMatch[];
+}>();
+
 const page = usePage();
+
 defineOptions({
     layout: {
         breadcrumbs: [{ title: "Your career dashboard", href: "/dashboard" }],
     },
 });
 </script>
+
 <template>
     <Head title="Your career dashboard" />
     <div class="min-h-full bg-slate-50 p-5 text-slate-900 md:p-9">

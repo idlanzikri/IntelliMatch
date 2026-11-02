@@ -46,7 +46,7 @@ const footerNavItems: NavItem[] = [];
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" /><Link v-if="page.props.auth.user.is_admin" href="/admin" class="mx-4 rounded-lg bg-teal-50 px-4 py-3 text-sm font-semibold text-teal-800">Admin workspace ↗</Link>
+            <NavMain :items="mainNavItems" /><Link v-if="page.props.auth.user.role === 'institution'" href="/institution" class="mx-4 rounded-lg bg-teal-50 px-4 py-3 text-sm font-semibold text-teal-800">Institution workspace ↗</Link><Link v-if="page.props.auth.user.is_admin" href="/admin" class="mx-4 rounded-lg bg-teal-50 px-4 py-3 text-sm font-semibold text-teal-800">Admin workspace ↗</Link>
         </SidebarContent>
 
         <SidebarFooter>
@@ -56,5 +56,6 @@ const footerNavItems: NavItem[] = [];
     </Sidebar>
     <slot />
 </template>
+
 
 
