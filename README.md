@@ -62,15 +62,28 @@ AI resume parsing, live jobs, learning-resource integration, and institution/adm
 
 ## Account seeders
 
-Run `docker compose exec app php artisan db:seed` to run SuperAdminSeeder, StudentSeeder, and InstitutionSeeder. Seeders are repeatable and reset passwords to the configured seed values while preserving existing names and student profiles.
+Run from the project folder while the Docker `app` service is running:
 
-- Superadmin: idlan.skyrem@gmail.com (verified, all current admin access).
-- Demo student: student@intellimatch.test (verified).
-- Demo institution: institution@intellimatch.test (verified; institutional workflows are not yet implemented).
-- Demo passwords use SEED_DEMO_PASSWORD in the local .env. Demo accounts are only seeded in local/testing environments.
-- The default seed password is `P@ssw0rd`; override SEED_SUPERADMIN_PASSWORD and SEED_DEMO_PASSWORD as needed. Rerunning seeders resets these accounts to the configured passwords.
+```powershell
+docker compose exec app php artisan migrate:fresh --seed
+```
+
+**This deletes all existing database tables**, runs the migrations, and seeds the accounts and demo data. To seed without resetting the database, run:
+
+```powershell
+docker compose exec app php artisan db:seed
+```
+
+The default seeder runs SuperAdminSeeder, InstitutionSeeder, StudentSeeder, and IndustrySeeder in that order:
+
+- Superadmin: `idlan.skyrem@gmail.com` (verified, all current admin access).
+- 5 institutions and staff accounts: `institution@intellimatch.test`, then `institution2@intellimatch.test` through `institution5@intellimatch.test`.
+- 30 students: `student@intellimatch.test`, then `student2@intellimatch.test` through `student30@intellimatch.test`. Each institution has 6 linked students with populated career profiles.
+- 15 industry accounts: `industry@intellimatch.test`, then `industry2@intellimatch.test` through `industry15@intellimatch.test`. Each has an approved company and 3–5 published vacancies (60 total), with future closing dates.
+- All seeded accounts are email verified. Demo data is only seeded in `local`/`testing` environments.
+- The default password is `P@ssw0rd`. Override `SEED_SUPERADMIN_PASSWORD` and `SEED_DEMO_PASSWORD` in `.env` as needed. `SEED_STUDENT_EMAIL` and `SEED_INSTITUTION_EMAIL` override the first student and institution login addresses.
+- Rerunning seeders resets passwords to the configured values and refreshes demo profiles, institution links, companies, and vacancies while preserving existing account names. It does not duplicate the seeded records.
 - Public registration always creates students; role and admin flags are not mass assignable.
-
 
 ## Institution workspace
 
@@ -78,8 +91,8 @@ Run `docker compose exec app php artisan db:seed` to run SuperAdminSeeder, Stude
 - `/institution/students/{id}` shows a linked student's profile and published career alignment.
 - Institution access requires a verified institution-role account with a server-assigned `institution_id`.
 - Profile institution text never grants membership. Cross-institution student URLs return 404.
-- The demo institution is `DEMO-TVET`; InstitutionSeeder links demo institution staff and an unassigned demo student.
-- Link existing students or institution staff with `docker compose exec app php artisan app:link-institution email@example.com DEMO-TVET`.
+- Demo institution codes are `DEMO-TVET-1` through `DEMO-TVET-5`; each has one staff account and six linked students.
+- Link existing students or institution staff with `docker compose exec app php artisan app:link-institution email@example.com DEMO-TVET-1`.
 - Institution logins redirect from `/dashboard` to `/institution`.
 - Programme administration, exports, and counselling notes are not implemented in this release.
 
@@ -87,4 +100,5 @@ Run `docker compose exec app php artisan db:seed` to run SuperAdminSeeder, Stude
 
 Register as Industry / Employer, verify email, and open /industry. Submit company details, then an administrator approves the company at /admin/companies. Changes to company details require renewed approval. Approved employers can publish jobs and internships; other statuses remain hidden from /opportunities. All employer writes are scoped to their company. Students apply through HTTP/HTTPS employer links; no student resumes are exposed.
 
-Run `docker compose exec app php artisan db:seed --class=IndustrySeeder` for industry@intellimatch.test using SEED_DEMO_PASSWORD. The demo company starts unapproved and contains no fabricated jobs. Logo upload, application tracking, and vacancy-specific AI scoring are not implemented.
+Run `docker compose exec app php artisan db:seed --class=IndustrySeeder` to seed only the 15 demo industry accounts using `SEED_DEMO_PASSWORD`. Their companies are approved and contain 3–5 sample published vacancies each. Logo upload, application tracking, and vacancy-specific AI scoring are not implemented.
+
