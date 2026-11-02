@@ -1,0 +1,4 @@
+<script setup lang="ts">
+import { Link } from '@inertiajs/vue3';
+</script>
+<template><div class="min-h-screen bg-slate-50 text-slate-900"><header class="border-b border-slate-200 bg-white"><nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5"><Link href="/industry" class="flex items-center gap-3"><img src="/brand/intellimatch.jpeg" alt="" class="size-12 object-contain" /><div><strong class="text-xl">Intelli<span class="text-teal-600">Match</span></strong><p class="text-xs text-slate-500">Industry workspace</p></div></Link><div class="flex gap-6 text-sm font-semibold"><Link href="/industry">My vacancies</Link><Link href="/opportunities">Browse opportunities</Link><Link href="/logout" method="post" as="button">Log out</Link></div></nav></header><main class="mx-auto max-w-7xl px-6 py-10"><slot /></main></div></template>

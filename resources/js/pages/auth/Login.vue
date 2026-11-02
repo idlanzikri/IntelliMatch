@@ -13,9 +13,7 @@ import { register } from "@/routes";
 /* @end-chisel-registration */
 import { store } from "@/routes/login";
 import { request } from "@/routes/password";
-/* @chisel-passkeys */
-import PasskeyVerify from "@/components/PasskeyVerify.vue";
-/* @end-chisel-passkeys */
+
 
 defineOptions({
     layout: {
@@ -40,20 +38,19 @@ defineProps<{
         {{ status }}
     </div>
 
-    <!-- @chisel-passkeys -->
-    <PasskeyVerify />
-    <!-- @end-chisel-passkeys -->
+
 
     <Form
         v-bind="store.form()"
         :reset-on-success="['password']"
         v-slot="{ errors, processing }"
-        class="flex flex-col gap-6"
+        class="flex flex-col gap-4"
     >
-        <div class="grid gap-6">
+        <div class="grid gap-4">
             <div class="grid gap-2">
-                <Label for="email">Email address</Label>
+                <Label class="text-[#102d49]" for="email">Email address</Label>
                 <Input
+                    class="!border-slate-300 !bg-white text-[#102d49] focus-visible:border-teal-600 focus-visible:ring-teal-600/20"
                     id="email"
                     type="email"
                     name="email"
@@ -68,17 +65,18 @@ defineProps<{
 
             <div class="grid gap-2">
                 <div class="flex items-center justify-between">
-                    <Label for="password">Password</Label>
+                    <Label class="text-[#102d49]" for="password">Password</Label>
                     <TextLink
                         v-if="canResetPassword"
                         :href="request()"
-                        class="text-sm"
+                        class="text-sm text-teal-700 hover:text-teal-800"
                         :tabindex="5"
                     >
                         Forgot your password?
                     </TextLink>
                 </div>
                 <PasswordInput
+                    class="!border-slate-300 !bg-white text-[#102d49] focus-visible:border-teal-600 focus-visible:ring-teal-600/20"
                     id="password"
                     name="password"
                     required
@@ -90,7 +88,7 @@ defineProps<{
             </div>
 
             <div class="flex items-center justify-between">
-                <Label for="remember" class="flex items-center space-x-3">
+                <Label for="remember" class="flex items-center space-x-3 text-[#102d49]">
                     <Checkbox id="remember" name="remember" :tabindex="3" />
                     <span>Remember me</span>
                 </Label>
@@ -98,7 +96,7 @@ defineProps<{
 
             <Button
                 type="submit"
-                class="mt-4 w-full"
+                class="mt-1 w-full bg-teal-700 text-white hover:bg-teal-800"
                 :tabindex="4"
                 :disabled="processing"
                 data-test="login-button"
@@ -109,9 +107,9 @@ defineProps<{
         </div>
 
         <!-- @chisel-registration -->
-        <div class="text-center text-sm text-muted-foreground">
+        <div class="text-center text-sm text-slate-500">
             Don't have an account?
-            <TextLink :href="register()" :tabindex="5">Sign up</TextLink>
+            <TextLink class="text-teal-700 hover:text-teal-800" :href="register()" :tabindex="5">Sign up</TextLink>
         </div>
         <!-- @end-chisel-registration -->
     </Form>

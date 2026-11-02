@@ -15,6 +15,9 @@ class CareerController extends Controller
 {
     public function index(ViewCareerRequest $request, ShowDashboardAction $action): Response|RedirectResponse
     {
+        if ($request->user()->role === 'industry') {
+            return to_route('industry.overview');
+        }
         if ($request->user()->role === 'institution') {
             return to_route('institution.overview');
         }

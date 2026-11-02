@@ -196,15 +196,15 @@ const steps = [
                     <article
                         v-for="step in steps"
                         :key="step.number"
-                        class="border-t border-slate-200 pt-6"
+                        class="group rounded-2xl border-t border-slate-200 p-6 transition-[transform,background-color,border-color,box-shadow] duration-300 ease-out hover:scale-[0.97] hover:border-teal-400 hover:bg-teal-50 hover:shadow-lg hover:shadow-teal-900/5 motion-reduce:transform-none motion-reduce:transition-none"
                     >
-                        <span class="text-sm font-semibold text-teal-600">{{
+                        <span class="text-sm font-semibold text-teal-600 transition-colors duration-300 group-hover:text-teal-800">{{
                             step.number
                         }}</span>
-                        <h3 class="mt-5 text-xl font-semibold">
+                        <h3 class="mt-5 text-xl font-semibold transition-colors duration-300 group-hover:text-teal-800">
                             {{ step.title }}
                         </h3>
-                        <p class="mt-3 leading-7 text-slate-500">
+                        <p class="mt-3 leading-7 text-slate-500 transition-colors duration-300 group-hover:text-teal-900">
                             {{ step.text }}
                         </p>
                     </article>

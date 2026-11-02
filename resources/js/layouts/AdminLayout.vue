@@ -2,7 +2,7 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import { ChartNoAxesCombined, GraduationCap, Compass, ArrowUpRight } from '@lucide/vue';
 const page = usePage();
-const navigation = [{ title: 'Overview', href: '/admin', icon: ChartNoAxesCombined }, { title: 'Students', href: '/admin/students', icon: GraduationCap }, { title: 'Career catalogue', href: '/admin/careers', icon: Compass }];
+const navigation = [{ title: 'Company approvals', href: '/admin/companies', icon: Compass }, { title: 'Overview', href: '/admin', icon: ChartNoAxesCombined }, { title: 'Students', href: '/admin/students', icon: GraduationCap }, { title: 'Career catalogue', href: '/admin/careers', icon: Compass }];
 </script>
 <template>
     <div class="min-h-screen bg-slate-50 text-slate-900">

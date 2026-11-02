@@ -82,3 +82,9 @@ Run `docker compose exec app php artisan db:seed` to run SuperAdminSeeder, Stude
 - Link existing students or institution staff with `docker compose exec app php artisan app:link-institution email@example.com DEMO-TVET`.
 - Institution logins redirect from `/dashboard` to `/institution`.
 - Programme administration, exports, and counselling notes are not implemented in this release.
+
+## Industry workspace
+
+Register as Industry / Employer, verify email, and open /industry. Submit company details, then an administrator approves the company at /admin/companies. Changes to company details require renewed approval. Approved employers can publish jobs and internships; other statuses remain hidden from /opportunities. All employer writes are scoped to their company. Students apply through HTTP/HTTPS employer links; no student resumes are exposed.
+
+Run `docker compose exec app php artisan db:seed --class=IndustrySeeder` for industry@intellimatch.test using SEED_DEMO_PASSWORD. The demo company starts unapproved and contains no fabricated jobs. Logo upload, application tracking, and vacancy-specific AI scoring are not implemented.

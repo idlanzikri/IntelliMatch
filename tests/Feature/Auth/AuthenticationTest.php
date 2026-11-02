@@ -12,6 +12,13 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_passkey_endpoints_are_not_registered(): void
+    {
+        foreach (['passkey.login-options', 'passkey.login', 'passkey.confirm-options', 'passkey.confirm', 'passkey.registration-options', 'passkey.store', 'passkey.destroy'] as $name) {
+            $this->assertFalse(\Illuminate\Support\Facades\Route::has($name));
+        }
+    }
+
     public function test_login_screen_can_be_rendered()
     {
         $response = $this->get(route('login'));

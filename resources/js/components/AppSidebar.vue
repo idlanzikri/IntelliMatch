@@ -19,6 +19,7 @@ import type { NavItem } from '@/types';
 
 const page = usePage();
 const mainNavItems: NavItem[] = [
+    { title: 'Job opportunities', href: '/opportunities', icon: Compass },
     { title: 'My career profile', href: '/student/profile', icon: GraduationCap },
     { title: 'Explore careers', href: '/dashboard#careers', icon: Compass },
     {
@@ -56,6 +57,3 @@ const footerNavItems: NavItem[] = [];
     </Sidebar>
     <slot />
 </template>
-
-
-

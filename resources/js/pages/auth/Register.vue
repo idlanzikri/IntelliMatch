@@ -31,7 +31,7 @@ defineOptions({
         v-slot="{ errors, processing }"
         class="flex flex-col gap-6"
     >
-        <div class="grid gap-6">
+        <div class="grid gap-6"><div class="grid gap-2"><Label for="account_type">Account type</Label><select id="account_type" name="account_type" class="rounded-md border border-input bg-background p-3 text-sm"><option value="student">Student</option><option value="industry">Industry / Employer</option></select><InputError :message="errors.account_type" /></div>
             <div class="grid gap-2">
                 <Label for="name">Name</Label>
                 <Input
