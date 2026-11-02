@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Institution;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class InstitutionSeeder extends Seeder
@@ -13,14 +12,22 @@ class InstitutionSeeder extends Seeder
         if (! app()->environment(['local', 'testing'])) {
             return;
         }
-        $institution = Institution::firstOrCreate(['code' => 'DEMO-TVET'], ['name' => 'Demo TVET Institution']);
-        $staff = SeedAccount::save(config('seed.institution_email'), 'Demo TVET Institution', 'institution', config('seed.demo_password'));
-        $staff->institution_id = $institution->id;
-        $staff->save();
-        $student = User::where('email', config('seed.student_email'))->where('role', 'student')->first();
-        if ($student && $student->institution_id === null) {
-            $student->institution_id = $institution->id;
-            $student->save();
+
+        $names = [
+            'Melaka Technical Institute', 
+            'Selangor Skills College', 
+            'Penang Technology Institute', 
+            'Johor Vocational College', 
+            'Perak Technical College'
+        ];
+        
+        foreach ($names as $index => $name) {
+            $number = $index + 1;
+            $institution = Institution::updateOrCreate(['code' => 'DEMO-TVET-'.$number], ['name' => $name]);
+            $email = $number === 1 ? config('seed.institution_email') : 'institution'.$number.'@intellimatch.test';
+            $staff = SeedAccount::save($email, $name, 'institution', config('seed.demo_password'));
+            $staff->institution_id = $institution->id;
+            $staff->save();
         }
     }
 }
