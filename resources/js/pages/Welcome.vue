@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { Head, Link } from "@inertiajs/vue3";
+import { ref } from "vue";
+import PublicNavigation from "@/components/PublicNavigation.vue";
+import { Head, Link, router } from "@inertiajs/vue3";
 import {
     ArrowRight,
     ArrowUpRight,
@@ -9,6 +11,12 @@ import {
     Route,
     Sparkles,
 } from "@lucide/vue";
+
+const query = ref("");
+function search(value = query.value) {
+    router.get('/careers', value.trim() ? { q: value.trim() } : {});
+}
+
 const steps = [
     {
         number: "01",
@@ -27,43 +35,11 @@ const steps = [
     },
 ];
 </script>
+
 <template>
     <Head title="Find your direction" />
     <div class="min-h-screen bg-[#fafcfd] text-[#102d49]">
-        <header class="border-b border-slate-200 bg-white">
-            <nav
-                class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10"
-                aria-label="Main navigation"
-            >
-                <Link href="/" class="flex items-center gap-2"
-                    ><img
-                        src="/brand/intellimatch.jpeg"
-                        alt=""
-                        class="size-12 rounded-lg object-contain"
-                    /><span class="text-xl font-bold tracking-tight"
-                        >Intelli<span class="text-teal-600">Match</span></span
-                    ></Link
-                >
-                <div class="hidden gap-8 text-sm font-medium md:flex">
-                    <a href="#how-it-works" class="hover:text-teal-600"
-                        >How it works</a
-                    ><a href="#possibilities" class="hover:text-teal-600"
-                        >For students</a
-                    ><a href="#institutions" class="hover:text-teal-600"
-                        >For institutions</a
-                    >
-                </div>
-                <div class="flex items-center gap-5">
-                    <Link href="/login" class="text-sm font-semibold"
-                        >Log in</Link
-                    ><Link
-                        href="/register"
-                        class="hidden rounded-lg bg-[#102d49] px-5 py-3 text-sm font-semibold text-white sm:block"
-                        >Get started <span aria-hidden="true">↗</span></Link
-                    >
-                </div>
-            </nav>
-        </header>
+        <PublicNavigation />
         <main>
             <section
                 class="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.15fr_1fr] lg:px-10 lg:py-24"
@@ -89,10 +65,10 @@ const steps = [
                         strengths.
                     </p>
                     <div class="mt-8 flex flex-wrap items-center gap-6">
-                        <Link
-                            href="/register"
+                        <a
+                            href="#career-search"
                             class="inline-flex items-center gap-3 rounded-lg bg-teal-700 px-6 py-4 font-semibold text-white transition hover:bg-teal-800"
-                            >Find my direction <ArrowUpRight :size="20" /></Link
+                            >Find my direction <ArrowUpRight :size="20" /></a
                         ><a
                             href="#how-it-works"
                             class="inline-flex items-center gap-2 text-sm font-semibold"
@@ -107,31 +83,60 @@ const steps = [
                     </p>
                 </div>
                 <div
-                    class="relative rounded-[2rem] border border-cyan-100 bg-white p-8 shadow-[0_25px_80px_-40px_#007c91] sm:p-12"
+                    id="career-search"
+                    class="rounded-[2rem] border border-cyan-100 bg-white p-8 shadow-[0_25px_80px_-40px_#007c91] sm:p-10"
                 >
                     <p
-                        class="text-xs font-semibold tracking-[0.2em] text-teal-700 uppercase"
+                        class="flex items-center gap-2 text-xs font-semibold tracking-widest text-teal-700 uppercase"
                     >
-                        Connect learning to possibility
+                        <Sparkles :size="18" /> Discover your possibilities
                     </p>
-                    <img
-                        src="/brand/intellimatch.jpeg"
-                        alt="IntelliMatch — Your AI-powered career guide for TVET students"
-                        class="my-5 w-full"
-                    />
-                    <div
-                        class="flex items-center gap-4 border-t border-slate-100 pt-5"
-                    >
-                        <div class="rounded-full bg-teal-50 p-3">
-                            <Compass class="text-teal-600" :size="24" />
-                        </div>
-                        <div>
-                            <p class="font-semibold">A clearer path forward</p>
-                            <p class="mt-1 text-sm text-slate-500">
-                                Built around what you can do.
-                            </p>
-                        </div>
+                    <h2 class="mt-5 text-3xl font-semibold">
+                        Find a career that fits you.
+                    </h2>
+                    <p class="mt-4 leading-7 text-slate-500">
+                        Start with your skills, interests, or a career you have
+                        in mind.
+                    </p>
+                    <form class="mt-6" @submit.prevent="search()">
+                        <label for="career-query" class="text-sm font-semibold"
+                            >What interests you?</label
+                        ><textarea
+                            id="career-query"
+                            v-model="query"
+                            rows="3"
+                            maxlength="500"
+                            placeholder="e.g. I enjoy troubleshooting and repairing machines"
+                            class="mt-3 w-full rounded-xl border border-slate-300 bg-slate-50 p-4 focus:outline-teal-600"
+                        ></textarea
+                        ><button
+                            type="submit"
+                            class="mt-3 w-full rounded-lg bg-teal-700 px-6 py-4 font-semibold text-white hover:bg-teal-800"
+                        >
+                            Find my career ↗
+                        </button>
+                    </form>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <button
+                            v-for="prompt in [
+                                'Troubleshooting',
+                                'Electrical',
+                                'Technology',
+                            ]"
+                            :key="prompt"
+                            class="rounded-full border border-teal-100 bg-teal-50 px-3 py-2 text-sm text-teal-800"
+                            @click="search(prompt)"
+                        >
+                            {{ prompt }}
+                        </button>
                     </div>
+                    <p
+                        class="mt-6 border-t border-slate-100 pt-4 text-xs leading-5 text-slate-500"
+                    >
+                        Free to explore. Search currently matches keywords in
+                        listed careers. Create a profile for skill-based
+                        recommendations.
+                    </p>
                 </div>
             </section>
             <section id="possibilities" class="bg-[#092c4f] text-white">
@@ -223,15 +228,15 @@ const steps = [
                         </h2>
                         <p class="mt-4 max-w-2xl leading-7 text-slate-600">
                             Our vision is to help educators connect student
-                            strengths with industry needs. Institutional
-                            reporting and AI resume guidance are planned for a
-                            future release.
+                            strengths with industry needs. Sign in to your
+                            institution workspace to review linked student
+                            profiles and career matches.
                         </p>
                     </div>
                     <Link
-                        href="/register"
+                        href="/talent"
                         class="inline-flex items-center gap-3 font-semibold text-teal-800"
-                        >Explore as a student <ArrowUpRight :size="20"
+                        >Discover talent <ArrowUpRight :size="20"
                     /></Link>
                 </div>
             </section>
