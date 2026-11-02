@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Link, usePage } from '@inertiajs/vue3';
-const page = usePage();
+import WorkspaceLayout from '@/layouts/WorkspaceLayout.vue';
 </script>
-<template><div class="min-h-screen bg-slate-50 text-slate-900"><header class="border-b border-slate-200 bg-white"><nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4"><Link href="/institution" class="flex items-center gap-3"><img src="/brand/intellimatch.jpeg" alt="" class="size-12 rounded-lg object-contain" /><div><span class="text-xl font-bold">Intelli<span class="text-teal-600">Match</span></span><p class="text-[10px] font-semibold tracking-widest text-slate-500 uppercase">Institution workspace</p></div></Link><div class="flex items-center gap-5 text-sm"><Link href="/institution" class="font-semibold text-teal-700">Overview</Link><Link href="/institution#students" class="font-semibold text-slate-600">Students</Link><span class="hidden text-slate-400 md:block">{{ page.props.auth.user.name }}</span><Link href="/logout" method="post" as="button" class="font-medium">Log out</Link></div></nav></header><main class="mx-auto max-w-7xl px-6 py-9 md:py-12"><slot /></main><footer class="mx-auto max-w-7xl px-6 py-8 text-xs text-slate-400">IntelliMatch · Student guidance starts with understanding.</footer></div></template>
+<template><WorkspaceLayout workspace="institution"><slot /></WorkspaceLayout></template>
