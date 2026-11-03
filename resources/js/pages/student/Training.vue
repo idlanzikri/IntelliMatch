@@ -10,6 +10,7 @@ type Institution = {
     address: string | null;
     state: string | null;
     latitude: number | null;
+    location_is_approximate: boolean;
     longitude: number | null;
     courses_count: number;
     agency: { name: string };
@@ -86,8 +87,8 @@ const mapOpen = ref(false);
             @select="(id) => router.visit(`/training/${id}`)"
         />
         <p class="mt-2 text-sm text-slate-500">
-            Only campuses with confirmed coordinates appear. All matching
-            institutions remain in the list.
+            Demo pins are randomly assigned city locations within each institution's state,
+            not actual campus addresses. All matching institutions remain in the list.
         </p>
     </div>
     <div class="grid gap-4 md:grid-cols-2">
@@ -102,7 +103,7 @@ const mapOpen = ref(false);
             <p class="my-3 text-sm">
                 {{ i.courses_count }} course records ·
                 {{
-                    i.latitude == null ? "Campus pin pending" : "Campus mapped"
+                    i.latitude == null ? "Campus pin pending" : i.location_is_approximate ? "Approximate demo location" : "Campus mapped"
                 }}
             </p>
             <Link

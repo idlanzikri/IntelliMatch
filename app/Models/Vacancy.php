@@ -13,7 +13,7 @@ class Vacancy extends Model
 
     protected function casts(): array
     {
-        return ['skills' => 'array', 'closing_date' => 'date:Y-m-d', 'latitude' => 'float', 'longitude' => 'float'];
+        return ['skills' => 'array', 'closing_date' => 'date:Y-m-d', 'latitude' => 'float', 'longitude' => 'float', 'location_is_approximate' => 'boolean'];
     }
 
     public function applications(): HasMany

@@ -16,7 +16,19 @@ class SaveVacancyAction
         $vacancy = $id ? Vacancy::where('company_id', $company->id)->findOrFail($id) : new Vacancy;
 
         $data = $request->validated();
+        if (isset($data['latitude'], $data['longitude']) &&
+            ((float) $data['latitude'] !== $vacancy->latitude || (float) $data['longitude'] !== $vacancy->longitude)) {
+            $vacancy->location_is_approximate = false;
+        }
+        if (! $vacancy->exists && $data['arrangement'] !== 'remote' &&
+            ! isset($data['latitude']) && ! isset($data['longitude']) &&
+            $company->latitude !== null && $company->longitude !== null) {
+            $data['latitude'] = $company->latitude;
+            $data['longitude'] = $company->longitude;
+            $vacancy->location_is_approximate = $company->location_is_approximate;
+        }
         if ($data['arrangement'] === 'remote') {
+            $vacancy->location_is_approximate = false;
             $data['latitude'] = null;
             $data['longitude'] = null;
         }

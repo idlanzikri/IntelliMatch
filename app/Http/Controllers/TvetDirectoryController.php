@@ -37,6 +37,7 @@ class TvetDirectoryController extends Controller
     {
         abort_unless($request->user()->is_admin, 403);
         $institution->update($request->validate(['latitude' => 'required|numeric|between:-90,90', 'longitude' => 'required|numeric|between:-180,180']));
+        $institution->forceFill(['location_is_approximate' => false])->save();
 
         return back();
     }

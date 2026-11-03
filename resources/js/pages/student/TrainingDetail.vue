@@ -9,6 +9,7 @@ const props = defineProps<{
         address: string | null;
         state: string | null;
         latitude: number | null;
+        location_is_approximate: boolean;
         longitude: number | null;
         agency: { name: string };
         courses: { id: number; name: string; source_url: string }[];
@@ -34,6 +35,7 @@ const form = useForm({
     >
     <p class="mt-6 text-sm text-teal-700">{{ institution.agency.name }}</p>
     <h1 class="my-3 text-2xl font-semibold">{{ institution.name }}</h1>
+    <p v-if="institution.location_is_approximate" class="mb-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">Demo location: a randomly assigned city within the institution's state. This pin does not represent its actual address.</p>
     <p class="mb-5 text-slate-500">
         {{ institution.address }} {{ institution.state }}
     </p>

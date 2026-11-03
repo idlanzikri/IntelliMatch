@@ -2,6 +2,8 @@
 
 ## TVET directory and maps
 
+- `docker compose exec app php artisan tvet:seed-demo-locations` assigns a stable random city/area from five choices per Malaysian state or federal territory to companies and institutions. Non-remote vacancies inherit their company's coordinates. Missing and previously approximate pins are populated; confirmed pins are preserved. Unknown states are reported and skipped. These demo city centres are not actual campus/workplace addresses and must not be used for real travel distances.
+
 - `docker compose exec app php artisan migrate --force` adds agencies, institution courses and nullable campus/workplace coordinates without resetting records.
 - `docker compose exec app php artisan tvet:import` imports the bundled 3 November 2026 TVET Madani snapshot: 14 agency groups, 1,324 institutions and 5,444 course records. It can be rerun; existing account memberships and manually confirmed campus coordinates are preserved. Existing demo institutions remain separate.
 - Students browse `/training` by course keyword, agency and state; each campus page lists source-linked courses. Administrators access the same directory and confirm campus pins on the detail page. No coordinates are guessed from institution names or town centres.

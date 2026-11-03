@@ -10,6 +10,6 @@ class Company extends Model
 
     protected function casts(): array
     {
-        return ['is_approved' => 'boolean'];
+        return ['is_approved' => 'boolean', 'latitude' => 'float', 'longitude' => 'float', 'location_is_approximate' => 'boolean'];
     }
 }

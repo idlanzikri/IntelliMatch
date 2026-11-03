@@ -94,8 +94,9 @@ function search() {
     <section v-if="mapOpen" class="mb-6">
         <LocationMap :points="markers" @select="(id) => (selected = id)" />
         <p class="mt-2 text-sm text-slate-500">
-            {{ markers.length }} workplaces across all matching results. Remote
-            roles and roles awaiting a workplace pin remain in the list.
+            {{ markers.length }} workplaces across all matching results. Demo locations
+            use their company's assigned city pin and do not represent actual workplaces.
+            Remote roles and roles awaiting a pin remain in the list.
         </p>
         <p v-if="selected" class="mt-2 rounded border bg-white p-3">
             {{ markers.find((m) => m.id === selected)?.name }}

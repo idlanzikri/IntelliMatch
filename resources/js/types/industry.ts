@@ -1,4 +1,7 @@
 export interface Company {
+    latitude: number | null;
+    longitude: number | null;
+    location_is_approximate: boolean;
     id: number;
     name: string;
     industry: string;
@@ -8,6 +11,7 @@ export interface Company {
     is_approved: boolean;
 }
 export interface Vacancy {
+    location_is_approximate: boolean;
     latitude: number | null;
     longitude: number | null;
     qualification_level?: string | null;
