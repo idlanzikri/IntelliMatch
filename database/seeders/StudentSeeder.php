@@ -80,8 +80,10 @@ class StudentSeeder extends Seeder
             $user->save();
             
             $profile = StudentProfile::firstOrNew(['user_id' => $user->id]);
+            $profile->user_id = $user->id;
             $profile->fill([
                 'institution' => $institution->name,
+                'qualification_level' => $index % 3 === 0 ? 'certificate' : 'diploma',
                 'programme' => $programmes[$index % 4],
                 'location' => $locations[$institutionIndex],
                 'skills' => array_slice($careers[$index % 4]['skills'], 0, 2 + $index % 3),
@@ -91,4 +93,3 @@ class StudentSeeder extends Seeder
         }
     }
 }
-

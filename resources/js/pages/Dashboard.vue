@@ -5,7 +5,7 @@ import CareerCard from "@/components/career/CareerCard.vue";
 import type { CareerMatch, StudentProfile } from "@/types/career";
 
 defineProps<{
-    profile: StudentProfile | null;
+    profile: StudentProfile | null; targetCareer?: { title: string }; recommendedJobs?: { id: number; title: string }[];
     careers: CareerMatch[];
 }>();
 
@@ -79,7 +79,7 @@ defineOptions({
                 <p class="mt-1 text-2xl font-semibold">{{ careers.length }}</p>
             </div>
         </div>
-        <section id="careers">
+        <section class="mb-8 rounded-2xl border border-teal-200 bg-white p-6"><h2 class="text-xl font-semibold">{{ targetCareer ? `Your target: ${targetCareer.title}` : "Choose your target career" }}</h2><p class="my-3 text-sm text-slate-500">Follow your learning steps, build practical evidence and find jobs related to your goal.</p><Link href="/student/career-paths" class="font-semibold text-teal-700">View career plan and next steps →</Link><div v-for="job in recommendedJobs" :key="job.id" class="mt-3 border-t pt-3"><Link :href="`/opportunities?search=${encodeURIComponent(job.title)}`" class="text-sm text-teal-700">{{ job.title }} →</Link></div></section><section id="careers">
             <h2 class="text-2xl font-semibold">
                 {{
                     profile?.skills?.length

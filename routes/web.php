@@ -22,3 +22,12 @@ require __DIR__.'/institution.php';
 require __DIR__.'/industry.php';
 
 Route::get('/opportunities', [OpportunityController::class, 'index'])->middleware(['auth', 'verified'])->name('opportunities');
+
+Route::middleware(['auth', 'verified'])->controller(\App\Http\Controllers\JourneyController::class)->group(function () {
+    Route::post('/opportunities/{vacancy}/apply', 'apply');
+    Route::get('/student/applications', 'applications');
+    Route::get('/student/career-paths', 'paths');
+    Route::put('/student/career-paths', 'plan');
+    Route::get('/industry/vacancies/{vacancy}/applicants', 'applicants');
+    Route::put('/industry/vacancies/{vacancy}/applicants/{application}', 'status');
+});

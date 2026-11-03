@@ -20,6 +20,7 @@ class UpdateProfileRequest extends FormRequest
         $skills = array_unique(array_merge($existing, ...Career::where('is_active', true)->pluck('skills')->all()));
 
         return [
+            'qualification_level' => ['nullable', Rule::in(['certificate', 'diploma', 'degree'])],
             'institution' => ['nullable', 'string', 'max:180'],
             'programme' => ['nullable', 'string', 'max:180'],
             'location' => ['nullable', 'string', 'max:180'],

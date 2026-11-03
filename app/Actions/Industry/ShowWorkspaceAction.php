@@ -14,10 +14,9 @@ class ShowWorkspaceAction
         $company = Company::where('user_id', $request->user()->id)->first();
 
         return [
-            'company' => $company, 
-            'vacancies' => $company ? Vacancy::where('company_id', $company->id)->latest()->paginate(15) : null, 
-            'careers' => Career::where('is_active', true)->orderBy('title')->get(['id', 'title'])
+            'company' => $company,
+            'vacancies' => $company ? Vacancy::withCount('applications')->where('company_id', $company->id)->latest()->paginate(15) : null,
+            'careers' => Career::where('is_active', true)->orderBy('title')->get(['id', 'title']),
         ];
     }
 }
-

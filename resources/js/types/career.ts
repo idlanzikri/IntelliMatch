@@ -1,4 +1,4 @@
-export interface StudentProfile {
+export interface StudentProfile { qualification_level?: string | null;
     institution: string | null;
     programme: string | null;
     location: string | null;

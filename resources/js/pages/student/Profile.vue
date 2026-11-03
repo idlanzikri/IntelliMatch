@@ -6,6 +6,7 @@ const props = defineProps<{
     availableSkills: string[];
 }>();
 const form = useForm({
+    qualification_level: props.profile?.qualification_level || '',
     institution: props.profile?.institution || "",
     programme: props.profile?.programme || "",
     location: props.profile?.location || "",
@@ -36,7 +37,7 @@ defineOptions({
                 class="space-y-8 rounded-2xl border border-slate-200 bg-white p-6 md:p-8"
                 @submit.prevent="form.put('/student/profile')"
             >
-                <section>
+                <section><label class="mb-5 block text-sm font-medium">Highest qualification held<select v-model="form.qualification_level" class="mt-2 block w-full rounded-lg border p-3"><option value="">Not specified</option><option value="certificate">Certificate</option><option value="diploma">Diploma</option><option value="degree">Degree</option></select><span class="text-red-600">{{ form.errors.qualification_level }}</span></label>
                     <h2 class="mb-5 text-xl font-semibold">Your education</h2>
                     <div class="grid gap-5 sm:grid-cols-2">
                         <label class="space-y-2 text-sm font-medium"

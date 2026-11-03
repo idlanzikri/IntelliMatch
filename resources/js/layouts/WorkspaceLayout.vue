@@ -74,21 +74,11 @@ const navigation = computed(() => {
     if (role.value === "institution")
         return [
             { title: "Overview", href: "/institution", icon: LayoutGrid },
-            {
-                title: "Students",
-                href: "/institution#students",
-                icon: GraduationCap,
-            },
         ];
 
     if (role.value === "industry")
         return [
             { title: "My vacancies", href: "/industry", icon: Building2 },
-            {
-                title: "Browse opportunities",
-                href: "/opportunities",
-                icon: Compass,
-            },
         ];
 
     return [
@@ -99,7 +89,8 @@ const navigation = computed(() => {
             href: "/student/profile",
             icon: GraduationCap,
         },
-        { title: "Explore careers", href: "/dashboard#careers", icon: Compass },
+        { title: "Career paths", href: "/student/career-paths", icon: Compass },
+        { title: "My applications", href: "/student/applications", icon: Building2 },
     ];
 });
 

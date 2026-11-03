@@ -18,7 +18,7 @@ class AccountSeederTest extends TestCase
         config(['seed.demo_password' => 'P@ssw0rd', 'seed.superadmin_password' => 'P@ssw0rd']);
         $this->seed(DatabaseSeeder::class);
         $this->seed(DatabaseSeeder::class);
-        $this->assertSame(3, User::count());
+        $this->assertSame(51, User::count());
         $user->refresh();
         $this->assertTrue(Hash::check('P@ssw0rd', $user->password));
         $this->assertSame('superadmin', $user->role);

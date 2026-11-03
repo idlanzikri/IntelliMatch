@@ -54,6 +54,7 @@ class IndustrySeeder extends Seeder
             $user = SeedAccount::save($email, $name, 'industry', config('seed.demo_password'));
 
             $company = Company::firstOrNew(['user_id' => $user->id]);
+            $company->user_id = $user->id;
             $company->fill([
                 'name' => $name, 
                 'industry' => $career->sector, 
@@ -71,7 +72,9 @@ class IndustrySeeder extends Seeder
                     'title' => $title
                 ]);
 
+                $vacancy->company_id = $company->id;
                 $vacancy->fill([
+                    'qualification_level' => $position === 3 ? 'certificate' : 'diploma',
                     'career_id' => $career->id,
                     'description' => $career->description.' Join '.$name.' with mentoring, hands-on projects and opportunities to develop your technical skills.',
                     'type' => $position === 3 ? 'internship' : 'full-time',
@@ -82,7 +85,7 @@ class IndustrySeeder extends Seeder
                     'qualifications' => 'Relevant TVET certificate or diploma. Fresh graduates are welcome to apply.',
                     'skills' => $career->skills,
                     'closing_date' => now('Asia/Kuala_Lumpur')->addDays(30 + $number + $position)->toDateString(),
-                    'application_url' => 'mailto:'.$email,
+                    'application_url' => 'https://example.com/careers',
                     'status' => 'published',
                 ]);
                 $vacancy->save();
@@ -90,4 +93,3 @@ class IndustrySeeder extends Seeder
         }
     }
 }
-

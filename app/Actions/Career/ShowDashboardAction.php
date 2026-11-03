@@ -5,6 +5,7 @@ namespace App\Actions\Career;
 use App\Http\Requests\Career\ViewCareerRequest;
 use App\Models\Career;
 use App\Models\StudentProfile;
+use App\Models\Vacancy;
 
 class ShowDashboardAction
 {
@@ -15,7 +16,7 @@ class ShowDashboardAction
         $skills = $profile?->skills ?? [];
 
         $catalogue = Career::where('is_active', true)->orderBy('id')->get()->toArray();
-        
+
         $careers = collect($catalogue)->map(function (array $career) use ($skills) {
             $matched = array_values(array_intersect($career['skills'], $skills));
             $career['matched'] = $matched;
@@ -27,6 +28,8 @@ class ShowDashboardAction
 
         return [
             'profile' => $profile,
+            'targetCareer' => $profile?->target_career_id ? Career::find($profile->target_career_id) : null,
+            'recommendedJobs' => $profile?->target_career_id ? Vacancy::open()->with('company')->where('career_id', $profile->target_career_id)->limit(3)->get() : [],
             'careers' => $careers,
             'availableSkills' => array_values(array_unique(array_merge($skills, ...array_column($catalogue, 'skills')))),
         ];

@@ -103,3 +103,14 @@ Register as Industry / Employer, verify email, and open /industry. Submit compan
 Run `docker compose exec app php artisan db:seed --class=IndustrySeeder` to seed only the 15 demo industry accounts using `SEED_DEMO_PASSWORD`. Their companies are approved and contain 3–5 sample published vacancies each. Logo upload, application tracking, and vacancy-specific AI scoring are not implemented.
 
 
+
+## Career paths and applications
+
+- Students can search `/opportunities` by keyword/company and location, filter job type and work arrangement, and browse one vacancy per row with 10 results per page.
+- Applications are submitted inside IntelliMatch using the student's current career profile. One application per student/vacancy is allowed. Closed, expired and unapproved-company vacancies cannot receive applications.
+- `/student/applications` tracks submitted, shortlisted and rejected applications.
+- Industry users open **Applicants** under each vacancy. Only the owning employer can view applicants or change their status.
+- Match scores use 70% case-insensitive required skill coverage and 30% minimum qualification level (certificate, diploma, degree). Missing qualification information contributes no qualification points and is labelled insufficient data. Scores use self-reported current profiles; employers must review programme relevance and evidence themselves.
+- `/student/career-paths` lets a student select one active target career, view skill gaps, track learning tasks and discover linked published vacancies. Completing a task does not automatically add a skill. The dashboard highlights the target and related jobs.
+- Student profiles record the highest qualification held; employers can set a minimum qualification level when editing vacancies. Existing records without these fields show insufficient qualification data until updated.
+- After pulling these changes, run `docker compose exec app php artisan migrate` and `docker compose run --rm --no-deps node npm run build`.
