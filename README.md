@@ -2,6 +2,9 @@
 
 ## TVET directory and maps
 
+- Training and opportunity maps are always visible below their filters. Student opportunity cards reuse `ApplicantMatch` (70% required-skill coverage, 30% qualification level) and explain missing information and skill gaps. A saved student career profile is required for a percentage.
+- Opportunity distance uses the linked institution's pin by default, or a selected demo city. It is a straight-line great-circle distance, not a road/travel estimate or the student's home location. Distance does not affect fit scores. Remote vacancies show no commute distance; missing workplace pins remain explicit.
+
 - `docker compose exec app php artisan tvet:seed-demo-locations` assigns a stable random city/area from five choices per Malaysian state or federal territory to companies and institutions. Non-remote vacancies inherit their company's coordinates. Missing and previously approximate pins are populated; confirmed pins are preserved. Unknown states are reported and skipped. These demo city centres are not actual campus/workplace addresses and must not be used for real travel distances.
 
 - `docker compose exec app php artisan migrate --force` adds agencies, institution courses and nullable campus/workplace coordinates without resetting records.

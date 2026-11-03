@@ -15,6 +15,8 @@ const props = withDefaults(
         editable?: boolean;
         latitude?: number | null;
         longitude?: number | null;
+        selectedId?: number | null;
+        fitToPoints?: boolean;
     }>(),
     { points: () => [] },
 );
@@ -28,18 +30,31 @@ let map: LibreMap | undefined;
 let marker: Marker | undefined;
 let disposed = false;
 let observer: ResizeObserver | undefined;
+let fittedBounds = '';
+function fitPoints() {
+    if (!map || !props.fitToPoints || !props.points.length) return;
+    const xs = props.points.map(p => p.longitude);
+    const ys = props.points.map(p => p.latitude);
+    const bounds: [number, number, number, number] = [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+    const key = bounds.join(',');
+    if (key === fittedBounds) return;
+    fittedBounds = key;
+    map.fitBounds(bounds, { padding: 50, maxZoom: 10, duration: 500 });
+}
 function data(): FeatureCollection {
+    const selected = props.points.find(p => p.id === props.selectedId);
     return {
         type: "FeatureCollection",
         features: props.points.map((p) => ({
             type: "Feature",
-            properties: { id: p.id, name: p.name },
+            properties: { id: p.id, name: p.name, selected: !!selected && p.latitude === selected.latitude && p.longitude === selected.longitude },
             geometry: { type: "Point", coordinates: [p.longitude, p.latitude] },
         })),
     };
 }
 function update() {
     (map?.getSource("places") as GeoJSONSource | undefined)?.setData(data());
+    fitPoints();
 }
 onMounted(async () => {
     try {
@@ -76,7 +91,7 @@ onMounted(async () => {
                 "Some map tiles could not load. Check your connection; the results list is still available.";
         });
         if (props.editable) {
-            marker = new lib.Marker({ color: "#0f766e" });
+            marker = new lib.Marker({ color: "#0f766e", scale: 0.65 });
             if (props.latitude != null && props.longitude != null)
                 marker.setLngLat([props.longitude, props.latitude]).addTo(map);
             map.on("click", (e) => {
@@ -95,6 +110,7 @@ onMounted(async () => {
                 data: data(),
                 cluster: true,
                 clusterRadius: 40,
+                clusterMaxZoom: 5,
             });
             map.addLayer({
                 id: "clusters",
@@ -103,7 +119,7 @@ onMounted(async () => {
                 filter: ["has", "point_count"],
                 paint: {
                     "circle-color": "#0f766e",
-                    "circle-radius": 20,
+                    "circle-radius": 10,
                     "circle-stroke-color": "#fff",
                     "circle-stroke-width": 2,
                 },
@@ -114,20 +130,16 @@ onMounted(async () => {
                 source: "places",
                 filter: ["!", ["has", "point_count"]],
                 paint: {
-                    "circle-color": "#0f766e",
-                    "circle-radius": 8,
+                    "circle-color": ['case', ['boolean', ['get', 'selected'], false], '#ea580c', '#0f766e'],
+                    "circle-radius": 4,
                     "circle-stroke-color": "#fff",
-                    "circle-stroke-width": 2,
+                    "circle-stroke-width": 1,
                 },
             });
             map.on("click", "points", (e) => {
                 const feature = e.features?.[0];
                 if (!feature) return;
                 emit("select", Number(feature.properties.id));
-                new lib.Popup()
-                    .setLngLat(e.lngLat)
-                    .setText(String(feature.properties.name))
-                    .addTo(map!);
             });
             map.on("click", "clusters", async (e) => {
                 const f = e.features?.[0];
@@ -149,6 +161,7 @@ onMounted(async () => {
                     if (map) map.getCanvas().style.cursor = "";
                 });
             }
+            fitPoints();
         });
         observer = new ResizeObserver(() => map?.resize());
         observer.observe(container.value);
@@ -158,6 +171,8 @@ onMounted(async () => {
     }
 });
 watch(() => props.points, update);
+watch(() => props.selectedId, update);
+watch(() => props.fitToPoints, () => { fittedBounds = ''; fitPoints(); });
 watch(
     () => [props.latitude, props.longitude],
     () => {

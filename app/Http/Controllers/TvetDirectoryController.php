@@ -10,7 +10,7 @@ class TvetDirectoryController extends Controller
 {
     public function index(Request $request)
     {
-        $filters = $request->validate(['search' => 'nullable|string|max:180', 'agency' => 'nullable|integer|exists:agencies,id', 'state' => 'nullable|string|max:100']);
+        $filters = $request->validate(['pin' => 'nullable|integer|min:1', 'search' => 'nullable|string|max:180', 'agency' => 'nullable|integer|exists:agencies,id', 'state' => 'nullable|string|max:100']);
         $query = Institution::whereNotNull('agency_id')->with('agency:id,name')->withCount('courses');
         if ($search = $filters['search'] ?? '') {
             $query->where(fn ($q) => $q->whereLike('name', '%'.$search.'%')->orWhereHas('courses', fn ($c) => $c->whereLike('name', '%'.$search.'%')));
@@ -22,6 +22,14 @@ class TvetDirectoryController extends Controller
             $query->where('state', $state);
         }
         $markers = (clone $query)->whereNotNull('latitude')->whereNotNull('longitude')->get(['id', 'name', 'latitude', 'longitude']);
+        if ($id = $filters['pin'] ?? null) {
+            $pin = $markers->firstWhere('id', $id);
+            if ($pin) {
+                $query->where('latitude', $pin->latitude)->where('longitude', $pin->longitude)->with('courses:id,institution_id,name,source_url');
+            } else {
+                $query->whereRaw('1 = 0');
+            }
+        }
 
         return inertia('student/Training', ['institutions' => $query->orderBy('name')->paginate(12)->withQueryString(), 'markers' => $markers, 'agencies' => Agency::orderBy('name')->get(['id', 'name']), 'states' => Institution::whereNotNull('state')->distinct()->orderBy('state')->pluck('state'), 'filters' => $filters, 'canManage' => (bool) $request->user()->is_admin]);
     }

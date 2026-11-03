@@ -38,7 +38,15 @@ class JourneyTest extends TestCase
         $vacancy = new Vacancy;
         $vacancy->company_id = $company->id;
         $vacancy->fill(['title' => 'Technician', 'description' => 'Repair equipment', 'type' => 'full-time', 'arrangement' => 'on-site', 'location' => 'Melaka', 'skills' => ['Troubleshooting', 'Safety'], 'qualification_level' => 'certificate', 'closing_date' => now()->addDays(10), 'application_url' => '', 'status' => 'published'])->save();
-        $this->actingAs($student)->get('/opportunities?search=Technician&location=Melaka')->assertInertia(fn (Assert $page) => $page->has('vacancies.data', 1)->where('vacancies.per_page', 10));
+        $this->actingAs($student)->get('/opportunities?search=Technician&location=Melaka')->assertInertia(fn (Assert $page) => $page->has('vacancies.data', 1)->where('vacancies.per_page', 10)->where('vacancies.data.0.match.score', 65)->where('vacancies.data.0.distance_km', null));
+        $vacancy->update(['latitude' => 2.1896, 'longitude' => 102.2501]);
+        $this->get('/opportunities?origin=melaka-0')->assertInertia(fn (Assert $page) => $page
+            ->where('distanceOrigin', 'melaka-0')->where('vacancies.data.0.distance_km', 0)
+            ->where('vacancies.data.0.match.score', 65));
+        $this->get('/opportunities?origin=johor-0')->assertInertia(fn (Assert $page) => $page
+            ->where('vacancies.data.0.distance_km', fn ($distance) => $distance > 100)
+            ->where('vacancies.data.0.match.score', 65));
+        $this->get('/opportunities?origin=invalid-location')->assertSessionHasErrors('origin');
         $this->get('/opportunities?search=NoMatchingJob')->assertInertia(fn (Assert $page) => $page->has('vacancies.data', 0));
         $this->actingAs($student)->post('/opportunities/'.$vacancy->id.'/apply')->assertRedirect();
         $this->post('/opportunities/'.$vacancy->id.'/apply')->assertRedirect();

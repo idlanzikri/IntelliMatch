@@ -11,6 +11,8 @@ export interface Company {
     is_approved: boolean;
 }
 export interface Vacancy {
+    match?: { score: number; skills_score: number; qualification_score: number | null; matched: string[]; missing: string[] } | null;
+    distance_km?: number | null;
     location_is_approximate: boolean;
     latitude: number | null;
     longitude: number | null;

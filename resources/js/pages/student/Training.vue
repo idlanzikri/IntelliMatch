@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link, router } from "@inertiajs/vue3";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import LocationMap from "@/components/LocationMap.vue";
 import TablePagination from "@/components/admin/TablePagination.vue";
 import type { Paginated } from "@/types/admin";
@@ -14,6 +14,7 @@ type Institution = {
     longitude: number | null;
     courses_count: number;
     agency: { name: string };
+    courses?: { id: number; name: string; source_url: string }[];
 };
 const props = defineProps<{
     institutions: Paginated<Institution>;
@@ -33,7 +34,9 @@ const filters = reactive({
     agency: props.filters.agency || "",
     state: props.filters.state || "",
 });
-const mapOpen = ref(false);
+function selectPin(id?: number) {
+    router.get('/training', { ...filters, ...(id ? { pin: id } : {}) }, { preserveState: true, preserveScroll: true, replace: true });
+}
 </script>
 <template>
     <Head title="Explore TVET training" />
@@ -77,19 +80,22 @@ const mapOpen = ref(false);
             {{ institutions.total }} institutions · {{ markers.length }} with
             campus pins
         </p>
-        <button class="font-semibold text-teal-700" @click="mapOpen = !mapOpen">
-            {{ mapOpen ? "Hide map" : "Show map" }}
-        </button>
     </div>
-    <div v-if="mapOpen" class="mb-6">
+    <div class="mb-6">
         <LocationMap
             :points="markers"
-            @select="(id) => router.visit(`/training/${id}`)"
+            :selected-id="Number(props.filters.pin) || null"
+            :fit-to-points="!!props.filters.state"
+            @select="selectPin"
         />
         <p class="mt-2 text-sm text-slate-500">
             Demo pins are randomly assigned city locations within each institution's state,
             not actual campus addresses. All matching institutions remain in the list.
         </p>
+    </div>
+    <div v-if="props.filters.pin" role="status" class="mb-4 flex items-center justify-between rounded-lg border border-orange-200 bg-orange-50 p-4 text-sm">
+        <p>{{ institutions.total }} institutions at the selected pin. Locations shared by multiple institutions show all of them below.</p>
+        <button class="ml-4 font-semibold text-teal-700" @click="selectPin()">Clear pin filter</button>
     </div>
     <div class="grid gap-4 md:grid-cols-2">
         <article
@@ -111,6 +117,7 @@ const mapOpen = ref(false);
                 class="font-semibold text-teal-700"
                 >View courses{{ canManage ? " / set campus pin" : "" }} →</Link
             >
+            <details v-if="i.courses" open class="mt-4 text-sm"><summary class="font-semibold">Courses</summary><ul class="mt-2 space-y-2"><li v-for="c in i.courses" :key="c.id"><a :href="c.source_url" target="_blank" rel="noopener noreferrer" class="text-teal-700">{{ c.name }} ↗</a></li></ul><p v-if="!i.courses.length">No courses listed.</p></details>
         </article>
     </div>
     <p v-if="!institutions.data.length" class="p-8 text-center">

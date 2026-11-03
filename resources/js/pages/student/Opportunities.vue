@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head, Link, router } from "@inertiajs/vue3";
 import LocationMap from "@/components/LocationMap.vue";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import TablePagination from "@/components/admin/TablePagination.vue";
 import type { Vacancy } from "@/types/industry";
 import type { Paginated } from "@/types/admin";
@@ -9,6 +9,9 @@ const props = defineProps<{
     vacancies: Paginated<Vacancy>;
     filters: Record<string, string>;
     applied: number[];
+    hasCareerProfile: boolean;
+    distanceOrigin: string;
+    distanceOrigins: { key: string; label: string; latitude: number; longitude: number }[];
     markers: {
         id: number;
         name: string;
@@ -16,9 +19,8 @@ const props = defineProps<{
         longitude: number;
     }[];
 }>();
-const mapOpen = ref(false);
-const selected = ref<number | null>(null);
 const filters = reactive({
+    origin: props.distanceOrigin,
     search: props.filters.search || "",
     location: props.filters.location || "",
     type: props.filters.type || "",
@@ -29,6 +31,9 @@ function search() {
         preserveState: true,
         replace: true,
     });
+}
+function selectPin(id?: number) {
+    router.get('/opportunities', { ...filters, ...(id ? { pin: id } : {}) }, { preserveState: true, preserveScroll: true, replace: true });
 }
 </script>
 <template>
@@ -81,32 +86,17 @@ function search() {
             Search jobs
         </button>
     </form>
-    <div class="mb-4 flex gap-4">
-        <button
-            class="rounded-lg border px-4 py-2 text-teal-700"
-            @click="mapOpen = !mapOpen"
-        >
-            {{ mapOpen ? "List view" : "Map view" }}</button
-        ><Link href="/training" class="p-2 text-teal-700"
-            >Explore TVET training →</Link
-        >
-    </div>
-    <section v-if="mapOpen" class="mb-6">
-        <LocationMap :points="markers" @select="(id) => (selected = id)" />
+    <div class="mb-4 rounded-xl border bg-white p-4"><label class="text-sm font-semibold">Calculate distance from<select v-model="filters.origin" class="ml-3 max-w-full rounded-lg border p-2" @change="search"><option value="none">Choose a city or institution</option><option v-for="o in distanceOrigins" :key="o.key" :value="o.key">{{ o.label }}</option></select></label><p class="mt-2 text-xs text-slate-500">Approximate straight-line distance using demo city pins; this is not driving distance or your home location.</p></div>
+    <section class="mb-6">
+        <LocationMap :points="markers" :selected-id="Number(props.filters.pin) || null" @select="selectPin" />
         <p class="mt-2 text-sm text-slate-500">
             {{ markers.length }} workplaces across all matching results. Demo locations
             use their company's assigned city pin and do not represent actual workplaces.
             Remote roles and roles awaiting a pin remain in the list.
         </p>
-        <p v-if="selected" class="mt-2 rounded border bg-white p-3">
-            {{ markers.find((m) => m.id === selected)?.name }}
-            <Link
-                :href="`/opportunities?vacancy=${selected}`"
-                class="ml-3 font-semibold text-teal-700"
-                >View opportunity →</Link
-            >
-        </p>
     </section>
+    <p v-if="!hasCareerProfile" class="mb-4 rounded-lg bg-amber-50 p-4 text-sm text-amber-900"><Link href="/student/profile" class="font-semibold underline">Complete your career profile</Link> to see your job fit percentages.</p>
+    <div v-if="props.filters.pin" role="status" class="mb-4 flex items-center justify-between rounded-lg border border-orange-200 bg-orange-50 p-4 text-sm"><p>{{ vacancies.total }} opportunities at the selected pin. All vacancies sharing this location appear below.</p><button class="ml-4 font-semibold text-teal-700" @click="selectPin()">Clear pin filter</button></div>
     <p class="mb-4 text-sm text-slate-500">
         {{ vacancies.total }} opportunities · 10 per page
     </p>
@@ -120,6 +110,8 @@ function search() {
                 {{ v.company?.name }}
             </p>
             <h2 class="mt-2 text-xl font-semibold">{{ v.title }}</h2>
+            <div class="my-3 flex flex-wrap items-center gap-3 text-sm"><span v-if="v.match" class="rounded-full bg-teal-100 px-3 py-1 font-bold text-teal-900">{{ v.match.score }}% fit</span><span v-else class="text-slate-500">Fit score unavailable</span><span class="rounded-full bg-slate-100 px-3 py-1">{{ v.arrangement === 'remote' ? 'Remote · no commute required' : v.distance_km != null ? `Approx. ${v.distance_km.toLocaleString()} km away` : filters.origin === 'none' ? 'Choose a starting location for distance' : 'Workplace distance unavailable' }}</span></div>
+            <details v-if="v.match" class="my-3 rounded-lg bg-teal-50 p-3 text-sm"><summary class="cursor-pointer font-semibold text-teal-800">Why this fit score?</summary><p class="mt-2">70% skills coverage + 30% qualification level, based on your saved profile.</p><p class="mt-2">Skills coverage: {{ v.match.skills_score }}%. Qualification: {{ v.match.qualification_score == null ? 'Insufficient information (no qualification points)' : v.match.qualification_score === 100 ? 'Meets the minimum level' : 'Below the minimum level' }}.</p><p class="mt-2">Matched skills: {{ v.match.matched.join(', ') || 'None recorded' }}.</p><p class="mt-2">Skills to build: {{ v.match.missing.join(', ') || 'No listed skill gaps' }}.</p><p class="mt-2 text-xs text-slate-600">A profile-based indicator, not a hiring prediction. Distance does not change your fit score.</p></details>
             <p class="mt-2 text-sm text-slate-500">
                 {{ v.location }} · {{ v.type }} · {{ v.arrangement }}
             </p>
@@ -130,7 +122,7 @@ function search() {
             <p class="line-clamp-2 text-sm leading-6 text-slate-600">
                 {{ v.description }}
             </p>
-            <details class="my-4 text-sm">
+            <details :open="!!props.filters.pin" class="my-4 text-sm">
                 <summary class="cursor-pointer font-semibold text-teal-700">
                     View job details
                 </summary>

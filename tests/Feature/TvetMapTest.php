@@ -16,6 +16,33 @@ class TvetMapTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_pin_filters_keep_other_markers_and_include_all_records_at_the_location(): void
+    {
+        $user = User::factory()->create();
+        $agency = Agency::create(['name' => 'Agency', 'source_id' => '1']);
+        $campuses = collect();
+        foreach ([101.5, 101.5, 102.5] as $index => $longitude) {
+            $campuses->push(Institution::create(['name' => 'Campus '.$index, 'code' => 'PIN-'.$index, 'agency_id' => $agency->id, 'latitude' => 3, 'longitude' => $longitude]));
+        }
+        InstitutionCourse::create(['institution_id' => $campuses[0]->id, 'source_id' => 'PIN-COURSE', 'name' => 'Welding', 'source_url' => 'https://www.tvet.gov.my/']);
+        $this->actingAs($user)->get('/training?pin='.$campuses[0]->id)->assertInertia(fn (Assert $p) => $p
+            ->has('markers', 3)->has('institutions.data', 2)->where('institutions.total', 2)
+            ->has('institutions.data.0.courses', 1));
+        $this->get('/training?pin=99999')->assertInertia(fn (Assert $p) => $p->has('markers', 3)->has('institutions.data', 0));
+        $company = new Company;
+        $company->forceFill(['user_id' => $user->id, 'name' => 'Company', 'is_approved' => true])->save();
+        $vacancies = collect();
+        foreach ([101.5, 101.5, 102.5] as $longitude) {
+            $v = new Vacancy;
+            $v->forceFill(['company_id' => $company->id, 'title' => 'Technician', 'description' => 'Details', 'type' => 'internship', 'arrangement' => 'on-site', 'location' => 'Selangor', 'latitude' => 3, 'longitude' => $longitude, 'skills' => [], 'closing_date' => now()->addWeek(), 'application_url' => '', 'status' => 'published'])->save();
+            $vacancies->push($v);
+        }
+        $this->get('/opportunities?pin='.$vacancies[0]->id)->assertInertia(fn (Assert $p) => $p
+            ->has('markers', 3)->has('vacancies.data', 2)->where('vacancies.total', 2));
+        $company->forceFill(['is_approved' => false])->save();
+        $this->get('/opportunities?pin='.$vacancies[0]->id)->assertInertia(fn (Assert $p) => $p->has('markers', 0)->has('vacancies.data', 0));
+    }
+
     public function test_import_is_idempotent_and_preserves_memberships_and_confirmed_pins(): void
     {
         $existing = Institution::create(['name' => 'Existing campus', 'code' => 'EXISTING']);
