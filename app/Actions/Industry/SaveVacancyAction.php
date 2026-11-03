@@ -16,6 +16,13 @@ class SaveVacancyAction
         $vacancy = $id ? Vacancy::where('company_id', $company->id)->findOrFail($id) : new Vacancy;
 
         $data = $request->validated();
+        if ($data['arrangement'] === 'remote') {
+            $data['latitude'] = null;
+            $data['longitude'] = null;
+        }
+        if ($data['status'] === 'published' && $data['arrangement'] !== 'remote' && (! isset($data['latitude']) || ! isset($data['longitude']))) {
+            throw ValidationException::withMessages(['latitude' => 'Select the actual workplace on the map before publishing.']);
+        }
         $data['application_url'] = $data['application_url'] ?? '';
 
         if ($data['status'] === 'published' && ! $company->is_approved) {

@@ -1,0 +1,1305 @@
+<style>
+    /* Professional TVET Madani Blue Theme */
+    :root {
+        --tvet-blue: #0c73d3;
+        --tvet-blue-dark: #004C99;
+        --tvet-blue-light: #3399FF;
+        --tvet-blue-pale: #E6F2FF;
+        --tvet-gray-bg: #F5F7FA;
+    }
+
+    /* Force Eduport navbar to stick with no animation/transition */
+    header.navbar-sticky-on,
+    .navbar-sticky {
+        position: sticky !important;
+        top: 0;
+        z-index: 1030;
+        animation: none !important;
+        transition: none !important;
+        backface-visibility: hidden;
+    }
+    header.navbar-sticky-on .navbar-brand,
+    header.navbar-sticky-on .navbar-top,
+    .navbar-sticky .navbar-brand,
+    .navbar-sticky .navbar-top {
+        transition: none !important;
+        animation: none !important;
+        backface-visibility: hidden;
+    }
+
+    /* (Sticky navbar overrides removed to restore Eduport defaults) */
+
+    .awam-agensi-page {
+        background: #f0f6fd;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-institusi-page {
+        background: #83b7e8;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-kursus-page {
+        background: #4999e4;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-hero {
+        background: var(--tvet-blue);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
+        overflow: hidden;
+        position: relative;
+        padding: 3rem;
+        margin-bottom: 2.5rem;
+        animation: slideIn 0.6s ease-out;
+    }
+
+    .awam-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .awam-hero * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .awam-hero img,
+    .awam-card img.awam-photo {
+        border-radius: 12px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .awam-hero img:hover,
+    .awam-card:hover img.awam-photo {
+        transform: scale(1.03);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .awam-card {
+        border: none;
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 1.5rem;
+        box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: fadeInUp 0.5s ease-out backwards;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
+
+    .awam-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .awam-course-card {
+        padding: 0.65rem;
+        margin-bottom: 0;
+        border-radius: 13px;
+    }
+
+    .awam-course-card .card-body {
+        padding: 0.85rem 0.65rem 0.45rem;
+    }
+
+    .awam-course-card .card-footer {
+        padding: 0 0.65rem 0.65rem;
+    }
+
+    .awam-course-image {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        border-width: 0 !important;
+        border-radius: 10px !important;
+    }
+
+    .awam-course-chip {
+        gap: 0.35rem;
+        padding: 0.3rem 0.7rem;
+        color: var(--tvet-blue-dark);
+        background: var(--tvet-blue-pale);
+        border-color: rgba(0, 102, 204, 0.14);
+        font-size: 0.72rem;
+        animation: none;
+    }
+
+    .awam-course-title {
+        min-height: 2.65rem;
+        margin-bottom: 0.45rem;
+        font-size: 0.98rem;
+        line-height: 1.35;
+    }
+
+    .awam-course-number {
+        color: var(--tvet-blue-dark);
+        font-weight: 800;
+        margin-right: 0.2rem;
+    }
+
+    .awam-course-description {
+        margin-bottom: 0.4rem;
+        line-height: 1.4;
+    }
+
+    .awam-course-institution {
+        color: #4b5563;
+        font-size: 0.76rem;
+        line-height: 1.4;
+    }
+
+    .awam-course-meta {
+        padding-top: 0.55rem;
+        border-top: 1px solid #edf2f7;
+        line-height: 1.45;
+    }
+
+    .awam-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 4px;
+        background: var(--tvet-blue);
+        transition: left 0.6s ease;
+    }
+
+    .awam-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 32px rgba(0, 102, 204, 0.12);
+    }
+
+    .awam-card:hover::before {
+        left: 100%;
+    }
+
+    .awam-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .awam-btn-primary {
+        background: var(--tvet-blue);
+        border: none;
+        color: #fff !important;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.75rem 1.75rem;
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .awam-btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .awam-btn-primary:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .awam-btn-primary:hover {
+        background: var(--tvet-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 102, 204, 0.35);
+    }
+
+    .awam-btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .awam-btn-ghost {
+        border: 2px solid var(--tvet-blue);
+        color: var(--tvet-blue);
+        background: transparent;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.6rem 1.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .awam-btn-ghost::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--tvet-blue);
+        transition: left 0.4s ease;
+        z-index: -1;
+    }
+
+    .awam-btn-ghost:hover {
+        color: #ffffff !important;
+        border-color: var(--tvet-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .awam-btn-ghost:hover::before {
+        left: 0;
+    }
+
+    .awam-badge {
+        background: var(--tvet-blue-pale);
+        color: var(--tvet-blue-dark);
+        border-radius: 50px;
+        font-weight: 700;
+        padding: 0.6rem 1.4rem;
+        border: 1px solid rgba(0, 102, 204, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+        animation: bounceIn 0.6s ease-out;
+    }
+
+    .awam-form {
+        padding: 2rem;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+        margin-bottom: 2rem;
+    }
+
+    .awam-form input,
+    .awam-form select {
+        border: 2px solid #e5e7eb !important;
+        border-radius: 10px !important;
+        background: #f9fafb;
+        padding: 1rem 1.25rem;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .awam-form input:focus,
+    .awam-form select:focus {
+        border-color: var(--tvet-blue) !important;
+        background: #ffffff;
+        box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.08);
+        outline: none;
+    }
+
+    .awam-floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        filter: blur(50px);
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    .awam-floating-shape.shape-1 {
+        width: 250px;
+        height: 250px;
+        top: -60px;
+        right: -60px;
+        animation-delay: 0s;
+    }
+
+    .awam-floating-shape.shape-2 {
+        width: 180px;
+        height: 180px;
+        bottom: -40px;
+        left: -40px;
+        animation-delay: 2s;
+    }
+
+    .awam-list-grid .awam-card {
+        backdrop-filter: blur(10px);
+    }
+
+    .awam-divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #9fa8bb, transparent);
+        margin: 1.0rem 0;
+    }
+
+    .awam-pill {
+        background: var(--tvet-blue-pale);
+        border: 1px solid rgba(0, 102, 204, 0.2);
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        color: var(--tvet-blue-dark);
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+
+    .awam-pill:hover {
+        background: var(--tvet-blue);
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .awam-card .btn-group .btn {
+        border-radius: 10px !important;
+    }
+
+    .awam-card .awam-icon-button {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--tvet-blue-pale);
+        color: var(--tvet-blue-dark);
+        transition: all 0.3s ease;
+    }
+
+    .awam-card .awam-icon-button:hover {
+        background: var(--tvet-blue);
+        color: #ffffff;
+        transform: rotate(360deg);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+    }
+
+    /* Enhanced Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pageLoad {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-20px) scale(1.05);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        70% {
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+        .awam-hero {
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .awam-card {
+            border-radius: 12px;
+        }
+        .awam-hero img {
+            margin-bottom: 1rem;
+        }
+        .awam-form {
+            padding: 1rem;
+        }
+    }
+
+    /* Accessibility & Performance */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TVET Madani</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="dlRYyV62LLSMRIh8XITgmOJkmBUvhkg6eQopxH7C">
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="tvet.gov.my">
+	<meta name="description" content="TVET Madani">
+
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
+				})
+
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
+
+			}
+		})
+
+	</script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="https://www.tvet.gov.my/build/assets/favicon-8cdb296b.ico">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/glightbox/css/glightbox.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/css/style.css">
+    <link rel="stylesheet" href="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.css">
+
+    <link rel="preload" as="style" href="https://www.tvet.gov.my/build/assets/app-802eb2ee.css" /><link rel="modulepreload" href="https://www.tvet.gov.my/build/assets/app-5ec2ae52.js" /><link rel="stylesheet" href="https://www.tvet.gov.my/build/assets/app-802eb2ee.css" /><script type="module" src="https://www.tvet.gov.my/build/assets/app-5ec2ae52.js"></script>
+    <style>
+    .agency-search-page {
+        padding-top: 1.5rem;
+        padding-bottom: 4rem;
+    }
+
+    .agency-search-hero {
+        position: relative;
+        min-height: 220px;
+        overflow: hidden;
+        border-radius: 22px;
+        background: linear-gradient(115deg, rgba(39, 36, 95, .96), rgba(64, 84, 163, .8));
+        box-shadow: 0 16px 40px rgba(39, 36, 95, .18);
+    }
+
+    .agency-search-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(90deg, rgba(39, 36, 95, .95) 0%, rgba(64, 84, 163, .76) 50%, rgba(237, 104, 120, .16) 100%),
+            url('https://www.tvet.gov.my/media/statik/pelajar2.png') center / cover no-repeat;
+    }
+
+    .agency-search-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 720px;
+        padding: 2.75rem;
+        color: #fff;
+    }
+
+    .agency-search-form {
+        position: relative;
+        z-index: 2;
+        margin: -34px 2rem 2rem;
+        padding: 1.15rem;
+        border: 1px solid rgba(64, 84, 163, .14);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 12px 32px rgba(39, 36, 95, .13);
+    }
+
+    .agency-search-select {
+        min-height: 52px;
+        border: 2px solid #e1e5f5;
+        border-radius: 11px;
+        background-color: #fafbff;
+    }
+
+    .agency-search-select:focus {
+        border-color: #4054a3;
+        box-shadow: 0 0 0 4px rgba(64, 84, 163, .09);
+    }
+
+    .agency-search-submit {
+        min-height: 52px;
+        border: 0;
+        border-radius: 11px;
+        background: linear-gradient(120deg, #ed6878, #4054a3);
+        box-shadow: 0 8px 18px rgba(64, 84, 163, .2);
+    }
+
+    .agency-search-submit:hover,
+    .agency-search-submit:focus {
+        background: linear-gradient(120deg, #dc596c, #35478f);
+    }
+
+    @media (max-width: 767.98px) {
+        .agency-search-hero-content { padding: 2rem 1.35rem 3rem; }
+        .agency-search-form { margin: -28px .8rem 1.5rem; }
+    }
+</style>
+
+</head>
+
+<script type="module" src="https://insight.tvet.gov.my/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
+<body class="d-flex flex-column min-vh-100">
+    
+    <header class="navbar-light header-static navbar-sticky">
+        <!-- Nav START -->
+        <nav class="navbar navbar-expand-xl">
+            <div class="container-fluid px-3 px-xl-5">
+                <!-- Logo START -->
+                <a class="navbar-brand" href="https://www.tvet.gov.my" style="display: flex; align-items: center;">
+                    <img src="https://www.tvet.gov.my/edufile/assets/images/tvet.png" width="70">
+                    <span style="font-family: 'Helvetica Neue', sans-serif; font-size: 1.2rem; color: #333; font-weight: bold; margin-left: 10px; margin-right: 30px;">TVET Madani</span>
+                </a>
+                <!-- Logo END -->
+                <!-- Responsive navbar toggler -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+
+                <!-- Main navbar START -->
+                <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+                    <!-- Nav panduan menu START -->
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <li class="nav-item dropdown dropdown-menu-shadow-stacked">
+                            <a class="nav-link bg-info bg-opacity-10 rounded-3 text-primary px-3 py-3 py-xl-0" href="#" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-ui-radios-grid me-2"></i><span>Panduan</span></a>
+                            <br>
+                            <ul class="dropdown-menu" aria-labelledby="categoryMenu">
+                                <!-- Dropdown submenu -->
+                                <li class="dropdown-submenu dropend">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Garis Panduan</a>
+                                    <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+                                        <li><a class="dropdown-item" href="/media/Garis_panduan_TVET_Perdana/mobile/index.html">Versi ebook</a></li>
+                                        <li><a class="dropdown-item" href="/media/Garis_panduan_TVET_Perdana/GARIS_PANDUAN_TVET_PERDANA.pdf">Versi PDF</a></li>
+                                        
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown submenu -->
+                                <li class="dropdown-submenu dropend">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Manual</a>
+                                    <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+                                        <li> <a class="dropdown-item" href="/media/manual/1_Manual_Admin_Agensi.pdf" target="_blank">Admin Agensi</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/2_Manual_Admin_Jabatan.pdf" target="_blank">Admin Jabatan</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/3_Manual_Penyelaras_Institusi_Perdana.pdf" target="_blank">Penyelaras Institusi PERDANA</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/4_Manual_Penyelaras_Institusi_Flexi.pdf" target="_blank">Penyelaras Institusi FLEXI</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/5_Manual_Penetapan_Pra_Syarat.pdf" target="_blank">Penetapan Pra-Syarat</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Nav panduan menu END -->
+
+                    <!-- Nav Main menu START -->
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <!-- Nav item utama START-->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://www.tvet.gov.my">Utama</a>
+                        </li>
+                        <!-- Nav item utama END-->
+
+                        <!-- Nav item menu START -->
+                                                <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                            <div class="dropdown-menu dropdown-menu-end w-120" data-bs-popper="none">
+                                <div class="row p-4">
+                                    <!-- Dropdown column item -->
+                                    <div class="col-xl-12 col-xxl-12 mb-3">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://www.tvet.gov.my/edufile/assets/images/element/data-science.svg" alt="Icon" class="me-3" style="width: 50px; height: 40px;">
+                                            <h6 class="mb-0">PERKHIDMATAN</h6>
+                                        </div>
+                                        <hr>
+                                        <ul class="list-unstyled">
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-berita/list"><span style="color:black; font-weight: bold;">Berita & Aktiviti</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-kursus/carian"><span style="color:black; font-weight: bold;">Kursus TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-agensi/index"><span style="color:black; font-weight: bold;">Institusi TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-carian/carian-pemegang-sijil"><span style="color:black; font-weight: bold;">Semak Profil TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://persijilan.tvet.gov.my/sijil/skm-scan-qr"><span style="color:black; font-weight: bold;">Pengesahan Sijil TVET</span></a></li> 
+                                            <li><a class="dropdown-item" href="https://bda.tvet.gov.my/public/dashboard/1a3499f3-5a3d-4200-832a-247418a7c527"><span style="color:black; font-weight: bold;">Info Grafik TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/main/dasar-privasi"><span style="color:black; font-weight: bold;">Dasar Privasi</span></a></li>
+                                            <li><a class="dropdown-item" href="/manual/MTVET_DASAR_TVET_NEGARA_2030.pdf"><span style="color:black; font-weight: bold;">Dasar TVET Negara</span></a></li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item dropdown-toggle" href="#">
+                                                    <span style="color:black; font-weight: bold;">Polisi Perkongsian Data TVET</span>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="/media/Polisi_Perkongsian_Data_TVET/mobile/index.html">Versi ebook</a></li>
+                                                    <li><a class="dropdown-item" href="/media/Polisi_Perkongsian_Data_TVET/Polisi_Perkongsian_Data_TVET.pdf">Versi PDF</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                                            </ul>
+                    <!-- Nav Main menu END -->
+
+                    <!-- Authentication Links -->
+                                        <!-- Nav Daftar START -->
+                    <div class="nav nav-item dropdown nav-search px-1 px-lg-3">
+                        <a class="button-daftar nav-link bg-danger bg-opacity-10 rounded-3 text-danger px-2 py-1 py-xl-2 fs-6 me-3" href="https://www.tvet.gov.my/pendaftaran/daftar"
+                            ><i class="bi bi-person-add me-2"></i><span>Daftar</span>
+                        </a>
+                                                    <a class="button-login nav-link bg-success bg-opacity-10 rounded-3 text-success px-2 py-1 py-xl-2 fs-6 button-login" href="https://www.tvet.gov.my/login">
+                                <i class="bi bi-door-open-fill me-2"></i><span>Log Masuk</span>
+                            </a>
+                                            </div>
+                    <!-- Nav Daftar END -->
+                                    </div>
+                <!-- Main navbar END -->
+            </div>
+        </nav>
+        <!-- Nav END -->
+    </header>
+    <!-- Header END -->
+
+
+<main class="py-4 flex-grow-1">
+    <div id="app">
+        
+<div class="container awam-agensi-page agency-search-page">
+    <section class="agency-search-hero mb-0">
+        <div class="agency-search-hero-content">
+            <span class="awam-chip mb-3"><i class="bi bi-buildings"></i> Institusi TVET Malaysia</span>
+            <h1 class="fw-bold text-white mb-2">Agensi TVET Malaysia</h1>
+            <p class="mb-0 text-white">Terokai agensi pendidikan dan latihan teknikal serta vokasional di seluruh Malaysia.</p>
+        </div>
+    </section>
+
+    <form action="https://www.tvet.gov.my/awam-agensi/index" method="get" class="agency-search-form">
+        <input type="hidden" name="_token" value="dlRYyV62LLSMRIh8XITgmOJkmBUvhkg6eQopxH7C" autocomplete="off">        <div class="row g-3 align-items-end">
+            <div class="col-lg-9">
+                <label class="form-label text-uppercase small fw-semibold">Cari Agensi</label>
+                <select name="id_agensi" class="form-select agency-search-select">
+                    <option value="" selected>Semua Agensi</option>
+                                            <option value="1" >KEMENTERIAN SUMBER MANUSIA</option>
+                                            <option value="2" >KEMENTERIAN KEMAJUAN DESA DAN WILAYAH</option>
+                                            <option value="3" >KEMENTERIAN BELIA DAN SUKAN</option>
+                                            <option value="5" >KEMENTERIAN PENDIDIKAN</option>
+                                            <option value="6" >KEMENTERIAN PERTANIAN DAN KETERJAMINAN MAKANAN</option>
+                                            <option value="7" >KEMENTERIAN DALAM NEGERI</option>
+                                            <option value="8" >KEMENTERIAN PERTAHANAN</option>
+                                            <option value="10" >KERAJAAN NEGERI DAN BADAN  BERKANUN</option>
+                                            <option value="11" >KEMENTERIAN PERLADANGAN DAN KOMODITI</option>
+                                            <option value="12" >KEMENTERIAN PENDIDIKAN TINGGI</option>
+                                            <option value="13" >KEMENTERIAN KERJA RAYA</option>
+                                            <option value="14" >KEMENTERIAN PELANCONGAN, SENI &amp; BUDAYA</option>
+                                            <option value="18" >SWASTA</option>
+                                            <option value="19" >KEMENTERIAN PEMBANGUNAN WANITA, KELUARGA DAN MASYARAKAT</option>
+                                    </select>
+            </div>
+            <div class="col-lg-3">
+                <button class="btn btn-primary agency-search-submit w-100" type="submit" id="button-addon2"><i class="bi bi-search me-1"></i> Tunjukkan</button>
+            </div>
+        </div>
+    </form>
+
+    
+
+            <div class="awam-card mb-4" style="animation-delay: 0s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/ksm.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN SUMBER MANUSIA">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN SUMBER MANUSIA</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Kementerian Sumber Manusia (KSM) bertanggungjawab kepada pembangunan kemahiran, pekerjaan, keselamatan dan kesihatan pekerjaan, kesatuan sekerja, perhubungan perusahaaan, maklumat dan analisis pasaran buruh dan keselamatan sosial.   Selaras dengan objektif kementerian dalam membangunkan dan melahirkan modal insan yang kompeten, produktif, responsif dan berdaya tahan dalam pasaran buruh negara, beberapa agensi dan Jabatan di bawah KSM berperanan melaksanakan latihan pra-pekerjaan dan kemahiran untuk memenuhi sektor perindustrian negara. Institusi latihan TVET pertama di bawah KSM ditubuhkan pada tahun 1964 iaitu Institut Latihan Perindustrian (ILP) Kuala Lumpur. Sehingga kini, sebanyak 33 buah institusi latihan TVET ditubuhkan untuk melaksanakan misi dan visi kementerian.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.mohr.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/1/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=1" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.1s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kkdw.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN KEMAJUAN DESA DAN WILAYAH">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN KEMAJUAN DESA DAN WILAYAH</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Kementerian Kemajuan Desa dan Wilayah (KKDW) melaksanakan fungsi serta tanggungjawab dalam memperkasakan kehidupan dan sosio-ekonomi masyarakat luar bandar menerusi perancangan di bawah KKDW dan agensi meliputi pembangunan dan pembaikan prasarana, ekonomi dan keusahawanan, pendidikan dan TVET serta pemerkasaan sistem penyampaian perkhidmatan di KKDW dan agensi.  Pada tahun 1968, institusi pendidikan TVET pertama ditubuhkan iaitu Institut Kemahiran Mara (IKM) Jasin, Melaka yang berperanan melahirkan modal insan yang seiring berasaskan industri serta teknousahawan yang berjaya sejajar dengan keperluan negara. Sehingga April 2023 sebanyak 280 buah institusi latihan TVET di bawah Kementerian ini melaksanakan latihan kemahiran dalam pelbagai bidang selaras dengan teras strategik Kementerian dalam membangunkan modal insan luar bandar secara komprehensif.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.rurallink.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/2/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=2" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.2s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kbs.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN BELIA DAN SUKAN">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN BELIA DAN SUKAN</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Kementerian Belia dan Sukan (KBS) diamanatkan untuk melaksanakan dasar-dasar kerajaan khususnya dalam pembangunan belia dan sukan.  Penglibatan KBS dalam pembangunan modal insan melalui pelaksanaan latihan kemahiran kepada belia di 22 buah institusi latihan TVET di bawah kementerian ini. Institusi TVET pertama, Institut Kemahian Belia Negara (IKBN) Dusun Tua telah ditubuhkan pada tahun 1964 dengan melatih golongam belia menganggur mendapat kemahiran teknikal dan boleh bekerja dengan sektor swasta atau berniaga sendiri.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.kbs.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/3/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=3" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.3s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kpm.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN PENDIDIKAN">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN PENDIDIKAN</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Misi Kementerian Pendidikan Malaysia (KPM) ialah untuk melestarikan sistem pendidikan berkualiti dalam membangunkan potensi individu bagi memenuhi aspirasi negara. Pendidikan dan Latihan Teknikal Vokasional (TVET) adalah satu laluan pendidikan berteraskan kemahiran yang disediakan bagi melahirkan sumber tenaga manusia untuk memenuhi keperluan tenaga kerja negara. TVET diperkasakan sejajar dengan arus perkembangan teknologi Revolusi Industri 4.0 dan digital masa kini agar hasrat KPM untuk melahirkan modal insan berkemahiran tinggi, berpengetahuan dan bersahsiah dapat dicapai serta mampu meningkatkan daya saing negara. KPM melalui Bahagian Pendidikan dan Latihan Teknikal Vokasional (BPLTV) sentiasa komited dalam memastikan program TVET yang dilaksanakan di institusi pendidikan TVET KPM adalah berkualiti dan relevan dengan menawarkan program-program yang berteraskan keberhasilan dan kemenjadian murid. 
+Institusi TVET KPM terdiri daripada 86 buah Kolej Vokasional yang menawarkan Sijil Vokasional Malaysia (SVM), Sijil Kemahiran Malaysia (SKM) dan Diploma Vokasional Malaysia (DVM) dan 9 buah Sekolah Menengah Teknik (SMT) menawarkan Mata Pelajaran Elektif Teknikal (MPET). Manakala sebanyak 495 buah Sekolah Menengah Kebangsaan (SMK) menawarkan Program Mata Pelajaran Vokasional (MPV), 347 buah SMK menawarkan Program Vokasional Menengah Atas (PVMA) dan 12 buah SMK menawarkan Perantisan Industri Menengah Atas (PIMA).</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.moe.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/5/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=5" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.4s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kpkm.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN PERTANIAN DAN KETERJAMINAN MAKANAN">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN PERTANIAN DAN KETERJAMINAN MAKANAN</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Objektif utama Kementerian Pertanian dan Keterjaminan Makanan (KPKM) adalah sebagai peneraju utama proses-proses transformasi dalam sektor pertanian secara terancang, bersepadu dan menyeluruh berteraskan penggemblengan seluruh pemikiran dan tenaga organisasi organisasi ke arah pencapaian matlamat Dasar Agromakanan Negara (DAN).  Keperluan latihan untuk melahirkan modal insan dalam sektor pertanian adalah selari dengan usaha kementerian dalam meningkatkan pengeluaran makanan dan keterjaminan makanan seperti yang termaktub dalam DAN. Program Latihan Kemahiran Pertanian Kebangsaan (PLKPK) telah diwujudkan bagi melahirkan tenaga kerja mahir bagi memenuhi kehendak industri dan ekonomi di dalam negara. Program ini dilaksanakan di 16 buah Institut Latihan Pertanian di seluruh negara.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.kpkm.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/6/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=6" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.5s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kdn.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN DALAM NEGERI">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN DALAM NEGERI</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3"></p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.moha.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/7/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=7" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.6s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kpmindef.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN PERTAHANAN">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN PERTAHANAN</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3"></p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://mod.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/8/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=8" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.7s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/agensi.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KERAJAAN NEGERI DAN BADAN  BERKANUN">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KERAJAAN NEGERI DAN BADAN  BERKANUN</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3"></p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/10/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.8s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kpk.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN PERLADANGAN DAN KOMODITI">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN PERLADANGAN DAN KOMODITI</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Kementerian Perladangan dan Komoditi (KPK) bertanggungjawab terhadap hala tuju dasar dan pembangunan industri Agrikomoditi negara merangkumi minyak sawit, getah, kayu, koko, lada dan kenaf yang menjadi antara pemacu ekonomi negara, menyumbang kepada pendapatan eksport, mewujudkan peluang pekerjaan serta menjana pendapatan terutamanya kepada pekebun kecil.
+
+Bagi menyahut seruan Kerajaan dalam meningkatkan kemahiran pekerja, terutamanya penglibatan pekerja tempatan, Kementerian Perladangan dan Komoditi (KPK) telah menubuhkan sebuah institusi latihan secara formal, iaitu Institut Perladangan dan Komoditi Malaysia (IMPAC) pada 4 November 2010. 
+
+IMPAC berperanan sebagai institusi induk yang menerajui serta memantau kursus dan program latihan kemahiran pusat latihan agensi-agensi di bawah KPK. Agensi-agensi yang terlibat adalah Lembaga Minyak Sawit Malaysia (MPOB), Lembaga Getah Malaysia (LGM), Lembaga Perindustrian Kayu Malaysia (MTIB), Lembaga Koko Malaysia (LKM), Lembaga Lada Malaysia (MPB) dan Lembaga Kenaf &amp; Tembakau Negara (LKTN).                                  
+
+IMPAC selaku Badan Peneraju Industri (Industry Lead Body, ILB) sektor perladangan dan komoditi akan terus memacu dalam memberi latihan kemahiran serta menggilap potensi modal insan bagi memastikan sektor agrikomoditi negara kekal berdaya saing dan mampan.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.kpk.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/11/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=11" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 0.9s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kpt.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN PENDIDIKAN TINGGI">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN PENDIDIKAN TINGGI</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Kementerian Pendidikan Tinggi (KPT) berperanan penting dalam mewujudkan ekosistem pengajian tinggi yang terbaik di universiti awam (UA), institusi pengajian tinggi swasta (IPTS), politeknik dan juga kolej komuniti. Semua institusi ini merupakan komponen utama ekosistem pendidikan dan latihan negara yang akan menjana para pemikir, ilmuwan, sarjana, tenaga kerja mahir dan separa mahir sesuai dengan peranan masing-masing.  TVET Kementerian Pengajian Tinggi terdiri daripada 4 universiti dalam Rangkaian Universiti Teknikal Malaysia (MTUN), 36 Politeknik dan 104 Kolej Komuniti. Tahap program TVET di KPT bermula di Kolej Komuniti yang menawarkan program peringkat sijil dan diploma. Politeknik pula menawarkan program pengajian di peringkat diploma dan sarjana muda manakala MTUN menawarkan program peringkat diploma dan ke atas sehingga ke peringkat doktor falsafah.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.mohe.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=12" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 1s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kkr.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN KERJA RAYA">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN KERJA RAYA</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Kementerian Kerja Raya (KKR) berperanan sebagai peneraju dalam membangunkan  industri pembinaan negara ke arah pemerkasaan pembangunan infrastruktur dan pengurusan aset menyeluruh serta peluasan pendigitalan industri pembinaan. Penglibatan KKR dalam latihan TVET adalah melalui penubuhan Akademi Binaan Malaysia (ABM) bermula pada tahun 1997 dan CIDB Technologies Sdn Bhd (CIDB Tech) pada tahun 2020. Matlamat utama penubuhan ABM dan CIDB Tech adalah untuk memenuhi keperluan bagi pembangunan dan peningkatan kompetensi kemahiran personel binaan mengikut bidang dan tahap kemahiran berdasarkan standard kompetensi. Terdapat lebih 100 bidang kemahiran yang ditawarkan di seluruh negara. </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.kkr.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/13/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=13" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 1.1s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kpsdb.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN PELANCONGAN, SENI &amp; BUDAYA">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN PELANCONGAN, SENI &amp; BUDAYA</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">Dasar Kementerian Pelancongan, Seni dan Budaya (MOTAC) adalah untuk memacu sektor pelancongan dan kebudayaan yang berdaya saing dan lestari demi pembangunan sosio-ekonomi negara. Di antara objektif utama MOTAC dalam memperkasakan ekosistem industri pelancongan adalah menyediakan modal insan yang berilmu, berkemahiran, kreatif dan inovatif. Dua agensi utama yang terlibat dalam merealisasikan objektif ini adalah Akademi Seni Budaya dan Warisan Kebangsaan (ASWARA) dan Institut Kraf Negara (IKN) yang menawarkan pelbagai kursus kemahiran yang bersesuaian.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.motac.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/14/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=14" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 1.2s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/agensi.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="SWASTA">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">SWASTA</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3"></p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/18/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=18" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="awam-card mb-4" style="animation-delay: 1.3s;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center p-3">
+                    <img src="../media/agensi/kpwkm.png" class="img-fluid awam-photo" style="max-height: 180px; width: 100%; object-fit: contain; background: #f5f7fa;" alt="KEMENTERIAN PEMBANGUNAN WANITA, KELUARGA DAN MASYARAKAT">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                            <h5 class="card-title text-primary fw-bold mb-0">KEMENTERIAN PEMBANGUNAN WANITA, KELUARGA DAN MASYARAKAT</h5>
+                            
+                        </div>
+                        <div class="awam-divider"></div>
+                        <p class="card-text mb-3">KPWKM merupakan peneraju utama dalam pembangunan dan kesejahteraan wanita, keluarga dan masyarakat seiring dengan konsep Pembangunan Malaysia MADANI.  Selaras dengan objektif kementerian dalam membangun masyarakat sejahtera secara inklusif dan saksama melalui inovasi sosial dan kebajikan produktif, KPWKM berperanan melaksanakan latihan dan kemahiran bagi memenuhi sektor perindustrian Negara.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.kpwkm.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-globe2"></i> Laman Web Agensi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/19/senarai-institusi" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-collection"></i> Senarai Institusi</a>
+                            <a href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=19" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC;"><i class="bi bi-journal-text"></i> Senarai Kursus TVET</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+;
+    </div>
+</main>
+
+
+<!-- Back to top -->
+<div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
+
+<!--Footer START (25082025 azah) -->
+<footer class="tvet-footer">
+	<div class="col-md-12">
+        <div class="tvet-footer__content text-center">
+            <div class="tvet-footer__copyright">
+                Portal Rasmi TVET MADANI © 2026 Hak Cipta Terpelihara.
+            </div>
+            <p class="tvet-footer__support">
+                Segala aduan dan masalah, sila e-mel kepada
+                <a href="mailto:up_tvet@mohr.gov.my"
+                   class="email-link">
+                   up_tvet@mohr.gov.my
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- =======================
+Footer END -->
+
+<style>
+  .tvet-footer {
+    padding-top: 3rem;
+  }
+
+  .tvet-footer__content {
+    position: relative;
+    overflow: hidden;
+    padding: 1.35rem 1rem;
+    color: rgba(255, 255, 255, .9);
+    background: linear-gradient(120deg, #ed6878 0%, #4054a3 52%, #27245f 100%);
+    border-top: 4px solid #f58b9a;
+  }
+
+  .tvet-footer__content::after {
+    content: '';
+    position: absolute;
+    right: -45px;
+    bottom: -80px;
+    width: 150px;
+    height: 150px;
+    border: 22px solid rgba(255, 255, 255, .1);
+    border-radius: 50%;
+  }
+
+  .tvet-footer__copyright {
+    position: relative;
+    z-index: 1;
+    font-size: .9rem;
+    font-weight: 700;
+  }
+
+  .tvet-footer__support {
+    position: relative;
+    z-index: 1;
+    margin: .35rem 0 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: .82rem;
+  }
+
+  .email-link {
+    color: #ffd2da;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .email-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+</style>
+
+<!-- Bootstrap JS -->
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- Vendors -->
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+
+<!-- Template Functions -->
+<script src="https://www.tvet.gov.my/edufile/assets/js/functions.js"></script>
+</body>
+</html>
+<style>
+    .nav-item.dropdown .dropdown-menu {
+        margin-top: -10px !important;
+        transform: translateY(0) !important;
+        padding-top: 0 !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    .dropdown-menu[data-bs-popper] {
+        top: auto !important;
+    }
+
+        @media (max-width: 1024px) {
+    .dropdown-menu {
+        position: static !important;
+        width: 100% !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        z-index: 1000;
+        display: none !important; /* Set asal, toggle dengan JS */
+    }
+
+    .dropdown-menu.show {
+        display: block !important;
+    }
+    }
+
+    .button-login {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        border: 1px solid rgba(34, 197, 94, 0.5);
+    }
+
+    .button-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(25, 135, 84, 0.5), .125rem .125rem 1rem rgba(34, 197, 94, 0.5);
+    }
+
+    .button-daftar {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        border: 1px solid #b03f1d80;
+    }
+
+    .button-daftar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #b03f1d80, .125rem .125rem 1rem #b03f1d80;
+    }
+</style>

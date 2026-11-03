@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useForm } from "@inertiajs/vue3";
+import LocationMap from "@/components/LocationMap.vue";
 import { ref } from "vue";
 import type { Vacancy } from "@/types/industry";
 
@@ -13,6 +14,8 @@ const emit = defineEmits<{ close: [] }>();
 const skills = ref(props.vacancy?.skills.join("\n") || "");
 
 const form = useForm({
+    latitude: props.vacancy?.latitude ?? (null as number | null),
+    longitude: props.vacancy?.longitude ?? (null as number | null),
     qualification_level: props.vacancy?.qualification_level || "",
     title: props.vacancy?.title || "",
     description: props.vacancy?.description || "",
@@ -125,6 +128,13 @@ function submit() {
                     </select></label
                 >
             </div>
+            <section v-if="form.arrangement !== 'remote'" class="space-y-3">
+                <h3 class="font-semibold">Actual workplace location</h3>
+                <LocationMap editable :latitude="form.latitude" :longitude="form.longitude" @pick="(lat, lng) => { form.latitude = lat; form.longitude = lng; }" />
+                <div class="grid gap-3 md:grid-cols-2"><label>Latitude<input v-model="form.latitude" type="number" step="any" min="-90" max="90" class="block w-full rounded border p-2" /></label><label>Longitude<input v-model="form.longitude" type="number" step="any" min="-180" max="180" class="block w-full rounded border p-2" /></label></div>
+                <button type="button" class="text-sm text-teal-700" @click="form.latitude = null; form.longitude = null">Clear pin</button>
+                <p class="text-sm text-slate-500">A workplace pin is required to publish on-site and hybrid roles. Drafts can be saved without a pin.</p>
+            </section>
             <label class="block text-sm font-medium"
                 >Job description<textarea
                     v-model="form.description"

@@ -8,6 +8,8 @@ export interface Company {
     is_approved: boolean;
 }
 export interface Vacancy {
+    latitude: number | null;
+    longitude: number | null;
     qualification_level?: string | null;
     applications_count?: number;
     id: number;

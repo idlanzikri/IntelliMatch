@@ -9,6 +9,8 @@ class SaveVacancyRequest extends WorkspaceRequest
     public function rules(): array
     {
         return [
+            'latitude' => ['nullable', 'required_with:longitude', 'numeric', 'between:-90,90'],
+            'longitude' => ['nullable', 'required_with:latitude', 'numeric', 'between:-180,180'],
             'qualification_level' => ['nullable', Rule::in(['certificate', 'diploma', 'degree'])],
             'title' => ['required', 'string', 'max:180'], 'description' => ['required', 'string', 'max:5000'],
             'type' => ['required', Rule::in(['full-time', 'part-time', 'contract', 'internship'])],

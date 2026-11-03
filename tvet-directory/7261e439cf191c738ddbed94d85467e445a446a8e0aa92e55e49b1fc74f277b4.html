@@ -1,0 +1,1732 @@
+<style>
+    /* Professional TVET Madani Blue Theme */
+    :root {
+        --tvet-blue: #0c73d3;
+        --tvet-blue-dark: #004C99;
+        --tvet-blue-light: #3399FF;
+        --tvet-blue-pale: #E6F2FF;
+        --tvet-gray-bg: #F5F7FA;
+    }
+
+    /* Force Eduport navbar to stick with no animation/transition */
+    header.navbar-sticky-on,
+    .navbar-sticky {
+        position: sticky !important;
+        top: 0;
+        z-index: 1030;
+        animation: none !important;
+        transition: none !important;
+        backface-visibility: hidden;
+    }
+    header.navbar-sticky-on .navbar-brand,
+    header.navbar-sticky-on .navbar-top,
+    .navbar-sticky .navbar-brand,
+    .navbar-sticky .navbar-top {
+        transition: none !important;
+        animation: none !important;
+        backface-visibility: hidden;
+    }
+
+    /* (Sticky navbar overrides removed to restore Eduport defaults) */
+
+    .awam-agensi-page {
+        background: #f0f6fd;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-institusi-page {
+        background: #83b7e8;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-kursus-page {
+        background: #4999e4;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-hero {
+        background: var(--tvet-blue);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
+        overflow: hidden;
+        position: relative;
+        padding: 3rem;
+        margin-bottom: 2.5rem;
+        animation: slideIn 0.6s ease-out;
+    }
+
+    .awam-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .awam-hero * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .awam-hero img,
+    .awam-card img.awam-photo {
+        border-radius: 12px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .awam-hero img:hover,
+    .awam-card:hover img.awam-photo {
+        transform: scale(1.03);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .awam-card {
+        border: none;
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 1.5rem;
+        box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: fadeInUp 0.5s ease-out backwards;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
+
+    .awam-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .awam-course-card {
+        padding: 0.65rem;
+        margin-bottom: 0;
+        border-radius: 13px;
+    }
+
+    .awam-course-card .card-body {
+        padding: 0.85rem 0.65rem 0.45rem;
+    }
+
+    .awam-course-card .card-footer {
+        padding: 0 0.65rem 0.65rem;
+    }
+
+    .awam-course-image {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        border-width: 0 !important;
+        border-radius: 10px !important;
+    }
+
+    .awam-course-chip {
+        gap: 0.35rem;
+        padding: 0.3rem 0.7rem;
+        color: var(--tvet-blue-dark);
+        background: var(--tvet-blue-pale);
+        border-color: rgba(0, 102, 204, 0.14);
+        font-size: 0.72rem;
+        animation: none;
+    }
+
+    .awam-course-title {
+        min-height: 2.65rem;
+        margin-bottom: 0.45rem;
+        font-size: 0.98rem;
+        line-height: 1.35;
+    }
+
+    .awam-course-number {
+        color: var(--tvet-blue-dark);
+        font-weight: 800;
+        margin-right: 0.2rem;
+    }
+
+    .awam-course-description {
+        margin-bottom: 0.4rem;
+        line-height: 1.4;
+    }
+
+    .awam-course-institution {
+        color: #4b5563;
+        font-size: 0.76rem;
+        line-height: 1.4;
+    }
+
+    .awam-course-meta {
+        padding-top: 0.55rem;
+        border-top: 1px solid #edf2f7;
+        line-height: 1.45;
+    }
+
+    .awam-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 4px;
+        background: var(--tvet-blue);
+        transition: left 0.6s ease;
+    }
+
+    .awam-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 32px rgba(0, 102, 204, 0.12);
+    }
+
+    .awam-card:hover::before {
+        left: 100%;
+    }
+
+    .awam-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .awam-btn-primary {
+        background: var(--tvet-blue);
+        border: none;
+        color: #fff !important;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.75rem 1.75rem;
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .awam-btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .awam-btn-primary:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .awam-btn-primary:hover {
+        background: var(--tvet-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 102, 204, 0.35);
+    }
+
+    .awam-btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .awam-btn-ghost {
+        border: 2px solid var(--tvet-blue);
+        color: var(--tvet-blue);
+        background: transparent;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.6rem 1.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .awam-btn-ghost::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--tvet-blue);
+        transition: left 0.4s ease;
+        z-index: -1;
+    }
+
+    .awam-btn-ghost:hover {
+        color: #ffffff !important;
+        border-color: var(--tvet-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .awam-btn-ghost:hover::before {
+        left: 0;
+    }
+
+    .awam-badge {
+        background: var(--tvet-blue-pale);
+        color: var(--tvet-blue-dark);
+        border-radius: 50px;
+        font-weight: 700;
+        padding: 0.6rem 1.4rem;
+        border: 1px solid rgba(0, 102, 204, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+        animation: bounceIn 0.6s ease-out;
+    }
+
+    .awam-form {
+        padding: 2rem;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+        margin-bottom: 2rem;
+    }
+
+    .awam-form input,
+    .awam-form select {
+        border: 2px solid #e5e7eb !important;
+        border-radius: 10px !important;
+        background: #f9fafb;
+        padding: 1rem 1.25rem;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .awam-form input:focus,
+    .awam-form select:focus {
+        border-color: var(--tvet-blue) !important;
+        background: #ffffff;
+        box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.08);
+        outline: none;
+    }
+
+    .awam-floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        filter: blur(50px);
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    .awam-floating-shape.shape-1 {
+        width: 250px;
+        height: 250px;
+        top: -60px;
+        right: -60px;
+        animation-delay: 0s;
+    }
+
+    .awam-floating-shape.shape-2 {
+        width: 180px;
+        height: 180px;
+        bottom: -40px;
+        left: -40px;
+        animation-delay: 2s;
+    }
+
+    .awam-list-grid .awam-card {
+        backdrop-filter: blur(10px);
+    }
+
+    .awam-divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #9fa8bb, transparent);
+        margin: 1.0rem 0;
+    }
+
+    .awam-pill {
+        background: var(--tvet-blue-pale);
+        border: 1px solid rgba(0, 102, 204, 0.2);
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        color: var(--tvet-blue-dark);
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+
+    .awam-pill:hover {
+        background: var(--tvet-blue);
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .awam-card .btn-group .btn {
+        border-radius: 10px !important;
+    }
+
+    .awam-card .awam-icon-button {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--tvet-blue-pale);
+        color: var(--tvet-blue-dark);
+        transition: all 0.3s ease;
+    }
+
+    .awam-card .awam-icon-button:hover {
+        background: var(--tvet-blue);
+        color: #ffffff;
+        transform: rotate(360deg);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+    }
+
+    /* Enhanced Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pageLoad {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-20px) scale(1.05);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        70% {
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+        .awam-hero {
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .awam-card {
+            border-radius: 12px;
+        }
+        .awam-hero img {
+            margin-bottom: 1rem;
+        }
+        .awam-form {
+            padding: 1rem;
+        }
+    }
+
+    /* Accessibility & Performance */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TVET Madani</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="0rLZJHmK3HAs92xQY5sDBXcFbe7NgEODWxScdYyP">
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="tvet.gov.my">
+	<meta name="description" content="TVET Madani">
+
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
+				})
+
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
+
+			}
+		})
+
+	</script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="https://www.tvet.gov.my/build/assets/favicon-8cdb296b.ico">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/glightbox/css/glightbox.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/css/style.css">
+    <link rel="stylesheet" href="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.css">
+
+    <link rel="preload" as="style" href="https://www.tvet.gov.my/build/assets/app-802eb2ee.css" /><link rel="modulepreload" href="https://www.tvet.gov.my/build/assets/app-5ec2ae52.js" /><link rel="stylesheet" href="https://www.tvet.gov.my/build/assets/app-802eb2ee.css" /><script type="module" src="https://www.tvet.gov.my/build/assets/app-5ec2ae52.js"></script>
+    
+</head>
+
+<script type="module" src="https://insight.tvet.gov.my/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
+<body class="d-flex flex-column min-vh-100">
+    
+    <header class="navbar-light header-static navbar-sticky">
+        <!-- Nav START -->
+        <nav class="navbar navbar-expand-xl">
+            <div class="container-fluid px-3 px-xl-5">
+                <!-- Logo START -->
+                <a class="navbar-brand" href="https://www.tvet.gov.my" style="display: flex; align-items: center;">
+                    <img src="https://www.tvet.gov.my/edufile/assets/images/tvet.png" width="70">
+                    <span style="font-family: 'Helvetica Neue', sans-serif; font-size: 1.2rem; color: #333; font-weight: bold; margin-left: 10px; margin-right: 30px;">TVET Madani</span>
+                </a>
+                <!-- Logo END -->
+                <!-- Responsive navbar toggler -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+
+                <!-- Main navbar START -->
+                <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+                    <!-- Nav panduan menu START -->
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <li class="nav-item dropdown dropdown-menu-shadow-stacked">
+                            <a class="nav-link bg-info bg-opacity-10 rounded-3 text-primary px-3 py-3 py-xl-0" href="#" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-ui-radios-grid me-2"></i><span>Panduan</span></a>
+                            <br>
+                            <ul class="dropdown-menu" aria-labelledby="categoryMenu">
+                                <!-- Dropdown submenu -->
+                                <li class="dropdown-submenu dropend">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Garis Panduan</a>
+                                    <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+                                        <li><a class="dropdown-item" href="/media/Garis_panduan_TVET_Perdana/mobile/index.html">Versi ebook</a></li>
+                                        <li><a class="dropdown-item" href="/media/Garis_panduan_TVET_Perdana/GARIS_PANDUAN_TVET_PERDANA.pdf">Versi PDF</a></li>
+                                        
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown submenu -->
+                                <li class="dropdown-submenu dropend">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Manual</a>
+                                    <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+                                        <li> <a class="dropdown-item" href="/media/manual/1_Manual_Admin_Agensi.pdf" target="_blank">Admin Agensi</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/2_Manual_Admin_Jabatan.pdf" target="_blank">Admin Jabatan</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/3_Manual_Penyelaras_Institusi_Perdana.pdf" target="_blank">Penyelaras Institusi PERDANA</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/4_Manual_Penyelaras_Institusi_Flexi.pdf" target="_blank">Penyelaras Institusi FLEXI</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/5_Manual_Penetapan_Pra_Syarat.pdf" target="_blank">Penetapan Pra-Syarat</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Nav panduan menu END -->
+
+                    <!-- Nav Main menu START -->
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <!-- Nav item utama START-->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://www.tvet.gov.my">Utama</a>
+                        </li>
+                        <!-- Nav item utama END-->
+
+                        <!-- Nav item menu START -->
+                                                <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                            <div class="dropdown-menu dropdown-menu-end w-120" data-bs-popper="none">
+                                <div class="row p-4">
+                                    <!-- Dropdown column item -->
+                                    <div class="col-xl-12 col-xxl-12 mb-3">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://www.tvet.gov.my/edufile/assets/images/element/data-science.svg" alt="Icon" class="me-3" style="width: 50px; height: 40px;">
+                                            <h6 class="mb-0">PERKHIDMATAN</h6>
+                                        </div>
+                                        <hr>
+                                        <ul class="list-unstyled">
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-berita/list"><span style="color:black; font-weight: bold;">Berita & Aktiviti</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-kursus/carian"><span style="color:black; font-weight: bold;">Kursus TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-agensi/index"><span style="color:black; font-weight: bold;">Institusi TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-carian/carian-pemegang-sijil"><span style="color:black; font-weight: bold;">Semak Profil TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://persijilan.tvet.gov.my/sijil/skm-scan-qr"><span style="color:black; font-weight: bold;">Pengesahan Sijil TVET</span></a></li> 
+                                            <li><a class="dropdown-item" href="https://bda.tvet.gov.my/public/dashboard/1a3499f3-5a3d-4200-832a-247418a7c527"><span style="color:black; font-weight: bold;">Info Grafik TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/main/dasar-privasi"><span style="color:black; font-weight: bold;">Dasar Privasi</span></a></li>
+                                            <li><a class="dropdown-item" href="/manual/MTVET_DASAR_TVET_NEGARA_2030.pdf"><span style="color:black; font-weight: bold;">Dasar TVET Negara</span></a></li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item dropdown-toggle" href="#">
+                                                    <span style="color:black; font-weight: bold;">Polisi Perkongsian Data TVET</span>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="/media/Polisi_Perkongsian_Data_TVET/mobile/index.html">Versi ebook</a></li>
+                                                    <li><a class="dropdown-item" href="/media/Polisi_Perkongsian_Data_TVET/Polisi_Perkongsian_Data_TVET.pdf">Versi PDF</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                                            </ul>
+                    <!-- Nav Main menu END -->
+
+                    <!-- Authentication Links -->
+                                        <!-- Nav Daftar START -->
+                    <div class="nav nav-item dropdown nav-search px-1 px-lg-3">
+                        <a class="button-daftar nav-link bg-danger bg-opacity-10 rounded-3 text-danger px-2 py-1 py-xl-2 fs-6 me-3" href="https://www.tvet.gov.my/pendaftaran/daftar"
+                            ><i class="bi bi-person-add me-2"></i><span>Daftar</span>
+                        </a>
+                                                    <a class="button-login nav-link bg-success bg-opacity-10 rounded-3 text-success px-2 py-1 py-xl-2 fs-6 button-login" href="https://www.tvet.gov.my/login">
+                                <i class="bi bi-door-open-fill me-2"></i><span>Log Masuk</span>
+                            </a>
+                                            </div>
+                    <!-- Nav Daftar END -->
+                                    </div>
+                <!-- Main navbar END -->
+            </div>
+        </nav>
+        <!-- Nav END -->
+    </header>
+    <!-- Header END -->
+
+
+<main class="py-4 flex-grow-1">
+    <div id="app">
+        
+<div class="container py-4 awam-agensi-page">
+	<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+		<a href="https://www.tvet.gov.my/awam-agensi/index" class="btn btn-link text-decoration-none px-0">
+			<i class="bi bi-arrow-left"></i> Kembali ke Senarai Agensi
+		</a>
+		<span class="awam-badge">
+			<i class="bi bi-buildings"></i> 146 Institusi
+		</span>
+	</div>
+
+	<div class="awam-institusi-page mb-4">
+		<div class="row align-items-center g-4">
+			<div class="col-md-4 text-center">
+				<img src="https://www.tvet.gov.my/media/agensi/kpt.png" class="rounded awam-photo" style="max-width: 350px; width: 100%; object-fit: cover;" alt="KEMENTERIAN PENDIDIKAN TINGGI">
+			</div>
+			<div class="col-md-8">
+				
+				<h2 class="fw-bold text-white mb-2">KEMENTERIAN PENDIDIKAN TINGGI</h2>
+									<p class="text-white mb-3">Kementerian Pendidikan Tinggi (KPT) berperanan penting dalam mewujudkan ekosistem pengajian tinggi yang terbaik di universiti awam (UA), institusi pengajian tinggi swasta (IPTS), politeknik dan juga kolej komuniti. Semua...</p>
+								<div class="d-flex flex-wrap gap-2">
+					
+											<a href="https://www.mohe.gov.my/" type="button" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#529be4; color:white;">
+							<i class="bi bi-globe"></i> Laman Web Agensi
+						</a>
+									</div>
+			</div>
+		</div>
+		<span class="awam-floating-shape shape-1"></span>
+		<span class="awam-floating-shape shape-2"></span>
+	</div>
+
+    <div><form action="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi" method="get" class="awam-card awam-form mb-4">
+		<div class="row g-3 align-items-end">
+			<div class="col-md-9">
+				<label class="form-label text-uppercase small text-black fw-semibold">Carian Institusi</label>
+				<input type="text" name="search" value="" class="form-control" placeholder="Masukkan nama atau lokasi institusi">
+			</div>
+			<div class="col-md-3 d-flex gap-2">
+				<button class="btn awam-btn-ghost w-100" type="submit" style="border-width:2.5px; border-style:solid; border-color:#0066CC;">
+					<i class="bi bi-search me-1"></i> Cari
+				</button>
+							</div>
+		</div>
+	</form></div>
+
+					<div class="awam-card mb-4" style="animation-delay: 0s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SANTUBONG">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SANTUBONG</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SARAWAK</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">SUBLOT 37-40, BLOK B, PUSAT KOMERSIL DEMAK LAUT, JALAN BAKO, 93050,KUCHING,</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">082-432691</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">admin@kksantubong.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/130/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.08s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SARIKEI">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SARIKEI</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SARAWAK</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">No. 7&amp;8, Lot 249 
+Blok 36, Jalan Central 
+96100 Sarikei 
+Sarawak</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">084-659101</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">webmasters@kksarikei.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/129/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.16s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SARIKEI CAWANGAN SIBU">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SARIKEI CAWANGAN SIBU</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SARAWAK</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">LOT 2577-2580, CAMPUS PARK, 11F, JLN WAWASAN, 96000 SIBU, SARAWAK</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">084-231 590</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">-</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/132/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.24s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SEBERANG JAYA">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SEBERANG JAYA</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> PULAU PINANG</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">LOT PT 2811, 2822, LORONG DESA PAUH 1, TAMAN DESA PAUH, 13700 PERMATANG PAUH, PULAU PINANG</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">04-3902897</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">kkseberangjaya@kksbj.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="http://kkseberangjaya.mypolycc.edu.my/v1/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/41/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.32s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SEGAMAT">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SEGAMAT</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> JOHOR</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">24-34, JALAN PUTRA 1/1, BANDAR IOI
+85000 SEGAMAT JOHOR</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">07-9431633</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">kksegamat@kkseg.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kksegamat.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/80/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.4s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SEGAMAT 2">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SEGAMAT 2</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> JOHOR</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">JALAN JEMENTAH, KAMPUNG PAYA LUAS, 85100 BATU ANAM, JOHOR</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">07-9498227</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">admin@kksegamat2.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kksegamat2.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/83/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.48s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SELANDAR">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SELANDAR</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> MELAKA</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">JALAN BATANG MELAKA,77500 SELANDAR,MELAKA, SELANDAR, MALAYSIA</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">06-5253122</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">kksl@kkselandar.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/76/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.56s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SELAYANG">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SELAYANG</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SELANGOR</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">JALAN IPOH, KM16, PERSIARAN PEGAWAI, 68100 BATU CAVES, SELANGOR</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">03-61368200</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">admin@kkselayang.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kkselayang.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/62/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.64s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SEMPORNA">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SEMPORNA</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SABAH</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">Lot C3, C4,C7-C9 Bandar Utama Jalan Bubul,
+P/S 402, 
+91308 Semporna
+Sabah</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">089-782300</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">kktaw.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/140/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.72s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SHAH ALAM">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SHAH ALAM</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SELANGOR</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">PERSIARAN USAHAWAN, SEKSYEN U1, 40150 SHAH ALAM, SELANGOR</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">03-55114030</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">kksa@kksa.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kkshahalam.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/66/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.8s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SIK">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SIK</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> KEDAH</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">NO. 28-A, PUSAT PERNIAGAAN ALAMANDA,08200,SIK, KEDAH</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">04-4693101</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">-</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/122/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.88s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SUNGAI PETANI">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SUNGAI PETANI</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> KEDAH</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">NO. 77, LENGKOK CEMPAKA 1,  PUSAT BANDAR AMANJAYA, 08000 SUNGAI PETANI, KEDAH</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">04-4412909</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">KKSPKED@KKSPE.EDU.MY</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/117/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 0.96s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SUNGAI SIPUT">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SUNGAI SIPUT</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> PERAK</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">JALAN KG SUNGAI SEJUK
+PETI SURAT 390
+31100 SUNGAI SIPUT (U)
+PERAK DARUL RIDZUAN</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">05-5971440</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">admin@kkss.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="http://www.kkss.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/48/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 1.04s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI SUNGAI SIPUT CAWANGAN LENGGONG">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI SUNGAI SIPUT CAWANGAN LENGGONG</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> PERAK</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">JALAN ALANG ISKANDAR, KAMPUNG SIRA, 33400 LENGGONG, PERAK</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">05-767 4153</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">-</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="http://www.kkss.edu.my/kkss/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/57/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 1.12s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI TAIPING">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI TAIPING</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> PERAK</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">NO. 25, LALUAN KAMUNTING 3, 34600 KAMUNTING, PERAK</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">05-8911867</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">contact_us@kktaiping.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kktaiping.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/51/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 1.2s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI TAMBUNAN">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI TAMBUNAN</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SABAH</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">Jalan Batu Gong
+89650 Tambunan, 
+Sabah</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">012-8939075</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">-</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://-" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/137/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 1.28s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI TAMPIN">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI TAMPIN</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> NEGERI SEMBILAN</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">KOLEJ KOMUNITI TAMPIN, JALAN IMPIAN NURI 3, TAMAN IMPIAN JAYA, 73200 GEMENCHEH, NEGERI SEMBILAN.</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">06-4316029</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">admin@kktns.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kktampin.mypolycc.edu.my/subdomain/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/72/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 1.36s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI TANGGA BATU">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI TANGGA BATU</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> MELAKA</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">LOT 423, JALAN SS1,
+TAMAN SAYANG SELASIH,
+KLEBANG MELAKA</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">06-3152952</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">adminkktb@kktanggabatu.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kktanggabatu.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/79/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 1.44s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI TANJONG KARANG">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI TANJONG KARANG</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> SELANGOR</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">JLN PB1 PUSAT BANDAR TANJONG KARANG 45500 TANJONG KARANG, SELANGOR</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">03-32692845</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">webmaster@kktk.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kktanjongkarang.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/64/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="awam-card mb-4" style="animation-delay: 1.52s;">
+			<div class="row g-0 align-items-stretch">
+				<div class="col-md-3 d-flex align-items-center justify-content-center" style="min-height: 260px;">
+					<img src="https://www.tvet.gov.my/media/jabatan/35.png" class="img-fluid awam-photo w-100 h-auto" style="max-height: 260px; object-fit: contain; background: #f8f9fa;" alt="KOLEJ KOMUNITI TANJUNG PIAI">
+				</div>
+				<div class="col-md-9">
+					<div class="card-body h-100 d-flex flex-column">
+						<div class="d-flex justify-content-between align-items-start flex-wrap ">
+							<div>
+								<h5 class="fw-bold text-primary mb-2">KOLEJ KOMUNITI TANJUNG PIAI</h5>
+								<p class="text-semibold mb-0"><i class="bi bi-geo-alt"></i> JOHOR</p>
+							</div>
+															<span class="awam-chip">1</span>
+													</div>
+						<div class="awam-divider"></div>
+													<p class="mb-3 text-">NO 45-47, JALAN DELIMA, PUSAT PERDAGANGAN PONTIAN, 82000 PONTIAN, JOHOR</p>
+												<div class="row small text- mb-3 g-3">
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-telephone"></i> Telefon</div>
+								<div class="text-dark">07-6869600</div>
+							</div>
+							<div class="col-md-4">
+								<div class="text-uppercase fw-semibold"><i class="bi bi-envelope"></i> Emel</div>
+								<div class="text-dark">admin@kktanjungpiai.edu.my</div>
+							</div>
+							
+						</div>
+						<div class="mt-auto d-flex flex-wrap gap-2">
+															<a href="https://kktanjungpiai.mypolycc.edu.my/" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+									<i class="bi bi-link-45deg"></i> Laman Web
+								</a>
+														<a href="https://www.tvet.gov.my/awam-agensi/12/institusi/89/kursus" class="btn awam-btn-ghost btn-sm" style="border-width:2.5px; border-style:solid; border-color:#0066CC; color:black;">
+								<i class="bi bi-journal-text" ></i> Lihat Kursus
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+			<div class="d-flex justify-content-center">
+			<nav>
+        <ul class="pagination">
+            
+                            <li class="page-item">
+                    <a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=4" rel="prev" aria-label="&laquo; Previous">&lsaquo;</a>
+                </li>
+            
+            
+                            
+                
+                
+                                                                                        <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=1">1</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=2">2</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=3">3</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=4">4</a></li>
+                                                                                                <li class="page-item active" aria-current="page"><span class="page-link">5</span></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=6">6</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=7">7</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=8">8</a></li>
+                                                                        
+            
+                            <li class="page-item">
+                    <a class="page-link" href="https://www.tvet.gov.my/awam-agensi/12/senarai-institusi?page=6" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+                </li>
+                    </ul>
+    </nav>
+
+		</div>
+	</div>
+;
+    </div>
+</main>
+
+
+<!-- Back to top -->
+<div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
+
+<!--Footer START (25082025 azah) -->
+<footer class="tvet-footer">
+	<div class="col-md-12">
+        <div class="tvet-footer__content text-center">
+            <div class="tvet-footer__copyright">
+                Portal Rasmi TVET MADANI © 2026 Hak Cipta Terpelihara.
+            </div>
+            <p class="tvet-footer__support">
+                Segala aduan dan masalah, sila e-mel kepada
+                <a href="mailto:up_tvet@mohr.gov.my"
+                   class="email-link">
+                   up_tvet@mohr.gov.my
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- =======================
+Footer END -->
+
+<style>
+  .tvet-footer {
+    padding-top: 3rem;
+  }
+
+  .tvet-footer__content {
+    position: relative;
+    overflow: hidden;
+    padding: 1.35rem 1rem;
+    color: rgba(255, 255, 255, .9);
+    background: linear-gradient(120deg, #ed6878 0%, #4054a3 52%, #27245f 100%);
+    border-top: 4px solid #f58b9a;
+  }
+
+  .tvet-footer__content::after {
+    content: '';
+    position: absolute;
+    right: -45px;
+    bottom: -80px;
+    width: 150px;
+    height: 150px;
+    border: 22px solid rgba(255, 255, 255, .1);
+    border-radius: 50%;
+  }
+
+  .tvet-footer__copyright {
+    position: relative;
+    z-index: 1;
+    font-size: .9rem;
+    font-weight: 700;
+  }
+
+  .tvet-footer__support {
+    position: relative;
+    z-index: 1;
+    margin: .35rem 0 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: .82rem;
+  }
+
+  .email-link {
+    color: #ffd2da;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .email-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+</style>
+
+<!-- Bootstrap JS -->
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- Vendors -->
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+
+<!-- Template Functions -->
+<script src="https://www.tvet.gov.my/edufile/assets/js/functions.js"></script>
+</body>
+</html>
+<style>
+    .nav-item.dropdown .dropdown-menu {
+        margin-top: -10px !important;
+        transform: translateY(0) !important;
+        padding-top: 0 !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    .dropdown-menu[data-bs-popper] {
+        top: auto !important;
+    }
+
+        @media (max-width: 1024px) {
+    .dropdown-menu {
+        position: static !important;
+        width: 100% !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        z-index: 1000;
+        display: none !important; /* Set asal, toggle dengan JS */
+    }
+
+    .dropdown-menu.show {
+        display: block !important;
+    }
+    }
+
+    .button-login {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        border: 1px solid rgba(34, 197, 94, 0.5);
+    }
+
+    .button-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(25, 135, 84, 0.5), .125rem .125rem 1rem rgba(34, 197, 94, 0.5);
+    }
+
+    .button-daftar {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        border: 1px solid #b03f1d80;
+    }
+
+    .button-daftar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #b03f1d80, .125rem .125rem 1rem #b03f1d80;
+    }
+</style>

@@ -1,0 +1,2036 @@
+<style>
+    /* Professional TVET Madani Blue Theme */
+    :root {
+        --tvet-blue: #0c73d3;
+        --tvet-blue-dark: #004C99;
+        --tvet-blue-light: #3399FF;
+        --tvet-blue-pale: #E6F2FF;
+        --tvet-gray-bg: #F5F7FA;
+    }
+
+    /* Force Eduport navbar to stick with no animation/transition */
+    header.navbar-sticky-on,
+    .navbar-sticky {
+        position: sticky !important;
+        top: 0;
+        z-index: 1030;
+        animation: none !important;
+        transition: none !important;
+        backface-visibility: hidden;
+    }
+    header.navbar-sticky-on .navbar-brand,
+    header.navbar-sticky-on .navbar-top,
+    .navbar-sticky .navbar-brand,
+    .navbar-sticky .navbar-top {
+        transition: none !important;
+        animation: none !important;
+        backface-visibility: hidden;
+    }
+
+    /* (Sticky navbar overrides removed to restore Eduport defaults) */
+
+    .awam-agensi-page {
+        background: #f0f6fd;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-institusi-page {
+        background: #83b7e8;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-kursus-page {
+        background: #4999e4;
+        padding: 2rem 0 4rem 0;
+        border-radius: 16px;
+        animation: pageLoad 0.5s ease-out;
+    }
+
+    .awam-hero {
+        background: var(--tvet-blue);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
+        overflow: hidden;
+        position: relative;
+        padding: 3rem;
+        margin-bottom: 2.5rem;
+        animation: slideIn 0.6s ease-out;
+    }
+
+    .awam-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .awam-hero * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .awam-hero img,
+    .awam-card img.awam-photo {
+        border-radius: 12px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .awam-hero img:hover,
+    .awam-card:hover img.awam-photo {
+        transform: scale(1.03);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .awam-card {
+        border: none;
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 1.5rem;
+        box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: fadeInUp 0.5s ease-out backwards;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
+
+    .awam-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .awam-course-card {
+        padding: 0.65rem;
+        margin-bottom: 0;
+        border-radius: 13px;
+    }
+
+    .awam-course-card .card-body {
+        padding: 0.85rem 0.65rem 0.45rem;
+    }
+
+    .awam-course-card .card-footer {
+        padding: 0 0.65rem 0.65rem;
+    }
+
+    .awam-course-image {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        border-width: 0 !important;
+        border-radius: 10px !important;
+    }
+
+    .awam-course-chip {
+        gap: 0.35rem;
+        padding: 0.3rem 0.7rem;
+        color: var(--tvet-blue-dark);
+        background: var(--tvet-blue-pale);
+        border-color: rgba(0, 102, 204, 0.14);
+        font-size: 0.72rem;
+        animation: none;
+    }
+
+    .awam-course-title {
+        min-height: 2.65rem;
+        margin-bottom: 0.45rem;
+        font-size: 0.98rem;
+        line-height: 1.35;
+    }
+
+    .awam-course-number {
+        color: var(--tvet-blue-dark);
+        font-weight: 800;
+        margin-right: 0.2rem;
+    }
+
+    .awam-course-description {
+        margin-bottom: 0.4rem;
+        line-height: 1.4;
+    }
+
+    .awam-course-institution {
+        color: #4b5563;
+        font-size: 0.76rem;
+        line-height: 1.4;
+    }
+
+    .awam-course-meta {
+        padding-top: 0.55rem;
+        border-top: 1px solid #edf2f7;
+        line-height: 1.45;
+    }
+
+    .awam-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 4px;
+        background: var(--tvet-blue);
+        transition: left 0.6s ease;
+    }
+
+    .awam-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 32px rgba(0, 102, 204, 0.12);
+    }
+
+    .awam-card:hover::before {
+        left: 100%;
+    }
+
+    .awam-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .awam-btn-primary {
+        background: var(--tvet-blue);
+        border: none;
+        color: #fff !important;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.75rem 1.75rem;
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .awam-btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .awam-btn-primary:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .awam-btn-primary:hover {
+        background: var(--tvet-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 102, 204, 0.35);
+    }
+
+    .awam-btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .awam-btn-ghost {
+        border: 2px solid var(--tvet-blue);
+        color: var(--tvet-blue);
+        background: transparent;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.6rem 1.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .awam-btn-ghost::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--tvet-blue);
+        transition: left 0.4s ease;
+        z-index: -1;
+    }
+
+    .awam-btn-ghost:hover {
+        color: #ffffff !important;
+        border-color: var(--tvet-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .awam-btn-ghost:hover::before {
+        left: 0;
+    }
+
+    .awam-badge {
+        background: var(--tvet-blue-pale);
+        color: var(--tvet-blue-dark);
+        border-radius: 50px;
+        font-weight: 700;
+        padding: 0.6rem 1.4rem;
+        border: 1px solid rgba(0, 102, 204, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+        animation: bounceIn 0.6s ease-out;
+    }
+
+    .awam-form {
+        padding: 2rem;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+        margin-bottom: 2rem;
+    }
+
+    .awam-form input,
+    .awam-form select {
+        border: 2px solid #e5e7eb !important;
+        border-radius: 10px !important;
+        background: #f9fafb;
+        padding: 1rem 1.25rem;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .awam-form input:focus,
+    .awam-form select:focus {
+        border-color: var(--tvet-blue) !important;
+        background: #ffffff;
+        box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.08);
+        outline: none;
+    }
+
+    .awam-floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        filter: blur(50px);
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    .awam-floating-shape.shape-1 {
+        width: 250px;
+        height: 250px;
+        top: -60px;
+        right: -60px;
+        animation-delay: 0s;
+    }
+
+    .awam-floating-shape.shape-2 {
+        width: 180px;
+        height: 180px;
+        bottom: -40px;
+        left: -40px;
+        animation-delay: 2s;
+    }
+
+    .awam-list-grid .awam-card {
+        backdrop-filter: blur(10px);
+    }
+
+    .awam-divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #9fa8bb, transparent);
+        margin: 1.0rem 0;
+    }
+
+    .awam-pill {
+        background: var(--tvet-blue-pale);
+        border: 1px solid rgba(0, 102, 204, 0.2);
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        color: var(--tvet-blue-dark);
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+
+    .awam-pill:hover {
+        background: var(--tvet-blue);
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .awam-card .btn-group .btn {
+        border-radius: 10px !important;
+    }
+
+    .awam-card .awam-icon-button {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--tvet-blue-pale);
+        color: var(--tvet-blue-dark);
+        transition: all 0.3s ease;
+    }
+
+    .awam-card .awam-icon-button:hover {
+        background: var(--tvet-blue);
+        color: #ffffff;
+        transform: rotate(360deg);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+    }
+
+    /* Enhanced Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pageLoad {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-20px) scale(1.05);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        70% {
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+        .awam-hero {
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .awam-card {
+            border-radius: 12px;
+        }
+        .awam-hero img {
+            margin-bottom: 1rem;
+        }
+        .awam-form {
+            padding: 1rem;
+        }
+    }
+
+    /* Accessibility & Performance */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TVET Madani</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="Lu0beNLu0KS8aPGrjZWAJBm0gSltnUW65Y9EelAj">
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="tvet.gov.my">
+	<meta name="description" content="TVET Madani">
+
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
+				})
+
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
+
+			}
+		})
+
+	</script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="https://www.tvet.gov.my/build/assets/favicon-8cdb296b.ico">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.css">
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/vendor/glightbox/css/glightbox.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="https://www.tvet.gov.my/edufile/assets/css/style.css">
+    <link rel="stylesheet" href="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.css">
+
+    <link rel="preload" as="style" href="https://www.tvet.gov.my/build/assets/app-802eb2ee.css" /><link rel="modulepreload" href="https://www.tvet.gov.my/build/assets/app-5ec2ae52.js" /><link rel="stylesheet" href="https://www.tvet.gov.my/build/assets/app-802eb2ee.css" /><script type="module" src="https://www.tvet.gov.my/build/assets/app-5ec2ae52.js"></script>
+    <style>
+    .agency-list-page {
+        padding-top: 1.5rem;
+        padding-bottom: 4rem;
+    }
+
+    .agency-identity-card {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        padding: 1.5rem;
+        border: 1px solid #e6e9f3;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 12px 30px rgba(39, 36, 95, .08);
+    }
+
+    .agency-identity-card::before {
+        content: '';
+        position: absolute;
+        inset: 0 0 auto;
+        height: 5px;
+        background: linear-gradient(90deg, #ed6878, #4054a3, #27245f);
+    }
+
+    .agency-identity-layout {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+    }
+
+    .agency-identity-logo {
+        display: grid;
+        flex: 0 0 120px;
+        width: 120px;
+        height: 120px;
+        padding: .75rem;
+        place-items: center;
+        border: 1px solid #e7eaf3;
+        border-radius: 16px;
+        background: #f8f9fc;
+    }
+
+    .agency-identity-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .agency-identity-label {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        margin-bottom: .45rem;
+        color: #4054a3;
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+    }
+
+    .agency-identity-name {
+        margin-bottom: .55rem;
+        color: #27245f;
+        font-size: clamp(1.25rem, 2.3vw, 1.75rem);
+        font-weight: 800;
+    }
+
+    .agency-profile-text {
+        display: -webkit-box;
+        overflow: hidden;
+        margin-bottom: .35rem;
+        color: #62677a;
+        font-size: .88rem;
+        line-height: 1.6;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+
+    .agency-profile-toggle:checked ~ .agency-profile-text {
+        display: block;
+        overflow: visible;
+    }
+
+    .agency-profile-action {
+        display: inline-flex;
+        align-items: center;
+        gap: .35rem;
+        padding: 0;
+        color: #4054a3;
+        cursor: pointer;
+        font-size: .78rem;
+        font-weight: 800;
+    }
+
+    .agency-profile-action .label-less,
+    .agency-profile-toggle:checked ~ .agency-profile-action .label-more {
+        display: none;
+    }
+
+    .agency-profile-toggle:checked ~ .agency-profile-action .label-less {
+        display: inline;
+    }
+
+    .agency-profile-action i { transition: transform .2s ease; }
+    .agency-profile-toggle:checked ~ .agency-profile-action i { transform: rotate(180deg); }
+
+    .agency-course-filter {
+        margin-bottom: 1.75rem;
+        padding: 1.1rem;
+        border: 1px solid #e6e9f3;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 10px 26px rgba(39, 36, 95, .07);
+    }
+
+    .agency-course-filter-input {
+        min-height: 50px;
+        border: 2px solid #e1e5f5;
+        border-radius: 11px !important;
+        background: #fafbff;
+    }
+
+    .agency-course-filter-input:focus {
+        border-color: #4054a3;
+        box-shadow: 0 0 0 4px rgba(64, 84, 163, .09);
+    }
+
+    .agency-course-filter-submit {
+        min-height: 50px;
+        border: 0;
+        border-radius: 11px !important;
+        background: linear-gradient(120deg, #ed6878, #4054a3);
+        box-shadow: 0 7px 16px rgba(64, 84, 163, .18);
+    }
+
+    .agency-course-filter-submit:hover,
+    .agency-course-filter-submit:focus {
+        background: linear-gradient(120deg, #dc596c, #35478f);
+    }
+
+    .agency-course-list-heading {
+        margin-bottom: 1rem;
+        color: #27245f;
+        font-weight: 800;
+    }
+
+    @media (max-width: 767.98px) {
+        .agency-identity-layout { align-items: flex-start; flex-direction: column; }
+        .agency-identity-logo { width: 92px; height: 92px; flex-basis: 92px; }
+    }
+</style>
+
+</head>
+
+<script type="module" src="https://insight.tvet.gov.my/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
+<body class="d-flex flex-column min-vh-100">
+    
+    <header class="navbar-light header-static navbar-sticky">
+        <!-- Nav START -->
+        <nav class="navbar navbar-expand-xl">
+            <div class="container-fluid px-3 px-xl-5">
+                <!-- Logo START -->
+                <a class="navbar-brand" href="https://www.tvet.gov.my" style="display: flex; align-items: center;">
+                    <img src="https://www.tvet.gov.my/edufile/assets/images/tvet.png" width="70">
+                    <span style="font-family: 'Helvetica Neue', sans-serif; font-size: 1.2rem; color: #333; font-weight: bold; margin-left: 10px; margin-right: 30px;">TVET Madani</span>
+                </a>
+                <!-- Logo END -->
+                <!-- Responsive navbar toggler -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+
+                <!-- Main navbar START -->
+                <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+                    <!-- Nav panduan menu START -->
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <li class="nav-item dropdown dropdown-menu-shadow-stacked">
+                            <a class="nav-link bg-info bg-opacity-10 rounded-3 text-primary px-3 py-3 py-xl-0" href="#" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-ui-radios-grid me-2"></i><span>Panduan</span></a>
+                            <br>
+                            <ul class="dropdown-menu" aria-labelledby="categoryMenu">
+                                <!-- Dropdown submenu -->
+                                <li class="dropdown-submenu dropend">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Garis Panduan</a>
+                                    <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+                                        <li><a class="dropdown-item" href="/media/Garis_panduan_TVET_Perdana/mobile/index.html">Versi ebook</a></li>
+                                        <li><a class="dropdown-item" href="/media/Garis_panduan_TVET_Perdana/GARIS_PANDUAN_TVET_PERDANA.pdf">Versi PDF</a></li>
+                                        
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown submenu -->
+                                <li class="dropdown-submenu dropend">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Manual</a>
+                                    <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+                                        <li> <a class="dropdown-item" href="/media/manual/1_Manual_Admin_Agensi.pdf" target="_blank">Admin Agensi</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/2_Manual_Admin_Jabatan.pdf" target="_blank">Admin Jabatan</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/3_Manual_Penyelaras_Institusi_Perdana.pdf" target="_blank">Penyelaras Institusi PERDANA</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/4_Manual_Penyelaras_Institusi_Flexi.pdf" target="_blank">Penyelaras Institusi FLEXI</a></li>
+                                        <li> <a class="dropdown-item" href="/media/manual/5_Manual_Penetapan_Pra_Syarat.pdf" target="_blank">Penetapan Pra-Syarat</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Nav panduan menu END -->
+
+                    <!-- Nav Main menu START -->
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <!-- Nav item utama START-->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://www.tvet.gov.my">Utama</a>
+                        </li>
+                        <!-- Nav item utama END-->
+
+                        <!-- Nav item menu START -->
+                                                <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                            <div class="dropdown-menu dropdown-menu-end w-120" data-bs-popper="none">
+                                <div class="row p-4">
+                                    <!-- Dropdown column item -->
+                                    <div class="col-xl-12 col-xxl-12 mb-3">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://www.tvet.gov.my/edufile/assets/images/element/data-science.svg" alt="Icon" class="me-3" style="width: 50px; height: 40px;">
+                                            <h6 class="mb-0">PERKHIDMATAN</h6>
+                                        </div>
+                                        <hr>
+                                        <ul class="list-unstyled">
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-berita/list"><span style="color:black; font-weight: bold;">Berita & Aktiviti</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-kursus/carian"><span style="color:black; font-weight: bold;">Kursus TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-agensi/index"><span style="color:black; font-weight: bold;">Institusi TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/awam-carian/carian-pemegang-sijil"><span style="color:black; font-weight: bold;">Semak Profil TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://persijilan.tvet.gov.my/sijil/skm-scan-qr"><span style="color:black; font-weight: bold;">Pengesahan Sijil TVET</span></a></li> 
+                                            <li><a class="dropdown-item" href="https://bda.tvet.gov.my/public/dashboard/1a3499f3-5a3d-4200-832a-247418a7c527"><span style="color:black; font-weight: bold;">Info Grafik TVET</span></a></li>
+                                            <li><a class="dropdown-item" href="https://www.tvet.gov.my/main/dasar-privasi"><span style="color:black; font-weight: bold;">Dasar Privasi</span></a></li>
+                                            <li><a class="dropdown-item" href="/manual/MTVET_DASAR_TVET_NEGARA_2030.pdf"><span style="color:black; font-weight: bold;">Dasar TVET Negara</span></a></li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item dropdown-toggle" href="#">
+                                                    <span style="color:black; font-weight: bold;">Polisi Perkongsian Data TVET</span>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="/media/Polisi_Perkongsian_Data_TVET/mobile/index.html">Versi ebook</a></li>
+                                                    <li><a class="dropdown-item" href="/media/Polisi_Perkongsian_Data_TVET/Polisi_Perkongsian_Data_TVET.pdf">Versi PDF</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                                            </ul>
+                    <!-- Nav Main menu END -->
+
+                    <!-- Authentication Links -->
+                                        <!-- Nav Daftar START -->
+                    <div class="nav nav-item dropdown nav-search px-1 px-lg-3">
+                        <a class="button-daftar nav-link bg-danger bg-opacity-10 rounded-3 text-danger px-2 py-1 py-xl-2 fs-6 me-3" href="https://www.tvet.gov.my/pendaftaran/daftar"
+                            ><i class="bi bi-person-add me-2"></i><span>Daftar</span>
+                        </a>
+                                                    <a class="button-login nav-link bg-success bg-opacity-10 rounded-3 text-success px-2 py-1 py-xl-2 fs-6 button-login" href="https://www.tvet.gov.my/login">
+                                <i class="bi bi-door-open-fill me-2"></i><span>Log Masuk</span>
+                            </a>
+                                            </div>
+                    <!-- Nav Daftar END -->
+                                    </div>
+                <!-- Main navbar END -->
+            </div>
+        </nav>
+        <!-- Nav END -->
+    </header>
+    <!-- Header END -->
+
+
+<main class="py-4 flex-grow-1">
+    <div id="app">
+        
+
+<div class="container agency-list-page">
+
+    <section class="agency-identity-card">
+        <div class="agency-identity-layout">
+            <div class="agency-identity-logo">
+                <img src="https://www.tvet.gov.my/media/agensi/agensi.png" alt="KERAJAAN NEGERI DAN BADAN  BERKANUN">
+            </div>
+            <div class="flex-grow-1">
+                <span class="agency-identity-label"><i class="bi bi-buildings-fill"></i> Agensi TVET</span>
+                <h1 class="agency-identity-name">KERAJAAN NEGERI DAN BADAN  BERKANUN</h1>
+                <input type="checkbox" class="agency-profile-toggle d-none" id="agency-profile-toggle">
+                <p class="agency-profile-text"></p>
+                <label class="agency-profile-action" for="agency-profile-toggle">
+                    <span class="label-more">Baca selanjutnya</span>
+                    <span class="label-less">Paparkan ringkas</span>
+                    <i class="bi bi-chevron-down"></i>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    
+    <form method="GET" class="agency-course-filter">
+        <label for="agency-course-search" class="form-label small fw-bold text-uppercase mb-2">Cari kursus agensi ini</label>
+        <div class="row g-2">
+          <div class="col-md">
+          <input
+            id="agency-course-search"
+            type="search"
+            name="search"
+            
+            value=""
+            class="form-control agency-course-filter-input px-3"
+            placeholder="Nama kursus, institusi atau negeri"
+            aria-label="Search"
+            aria-describedby="button-addon2">
+            <input type="hidden" id="id_agensi" name="id_agensi" value="10">
+          </div>
+          <div class="col-md-auto d-grid">
+              <button class="btn btn-primary agency-course-filter-submit px-4" type="submit" id="button-addon2"><i class="bi bi-search me-1"></i> Cari Kursus</button>
+          </div>
+                  </div>
+    </form>
+    
+
+    <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+        <h3 class="agency-course-list-heading"><i class="bi bi-journal-text me-2"></i>Senarai Kursus TVET</h3>
+        <span class="awam-chip mb-3">385 kursus</span>
+    </div>
+
+    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">365.</span> PERKHIDMATAN PEMBAIKAN – KENDERAAN RINGAN</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                KOLEJ KEMAHIRAN JOHOR, JOHOR BAHRU <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>8 Bulan</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Sijil Penuh</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:07-2387144" class="text-dark text-decoration-none">07-2387144</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:kkypjjb@yahoo.com" class="text-dark text-decoration-none">kkypjjb@yahoo.com</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.kkj.kpypj.edu.my/" class="text-dark text-decoration-none" target="_blank" rel="noopener">https://www.kkj.kpypj.edu.my/</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52808" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.04s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">366.</span> SERVIS DIAGNOSTIK – KENDERAAN RINGAN</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                KOLEJ KEMAHIRAN JOHOR, JOHOR BAHRU <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>10 Bulan</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Sijil Penuh</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:07-2387144" class="text-dark text-decoration-none">07-2387144</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:kkypjjb@yahoo.com" class="text-dark text-decoration-none">kkypjjb@yahoo.com</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.kkj.kpypj.edu.my/" class="text-dark text-decoration-none" target="_blank" rel="noopener">https://www.kkj.kpypj.edu.my/</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52811" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.08s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">367.</span> Certified Welding Inspector</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                JOHOR SKILLS DEVELOPMENT CENTRE (PUSPATRI) <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>4 Minggu</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:07-2521606" class="text-dark text-decoration-none">07-2521606</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:jsdc@puspatri.edu.my" class="text-dark text-decoration-none">jsdc@puspatri.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.johorskills.edu.my/" class="text-dark text-decoration-none" target="_blank" rel="noopener">https://www.johorskills.edu.my/</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52832" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.12s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">368.</span> Certified Data Centre Professional (CDCP)</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                JOHOR SKILLS DEVELOPMENT CENTRE (PUSPATRI) <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>5 Minggu</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:07-2521606" class="text-dark text-decoration-none">07-2521606</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:jsdc@puspatri.edu.my" class="text-dark text-decoration-none">jsdc@puspatri.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.johorskills.edu.my/" class="text-dark text-decoration-none" target="_blank" rel="noopener">https://www.johorskills.edu.my/</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52835" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.16s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">369.</span> 2D AND 3D INTERGRATED DESIGN</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN MODAL INSAN PERAK (CAWANGAN MERU) <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:05-5251422" class="text-dark text-decoration-none">05-5251422</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:phcdc@phcdc.edu.my" class="text-dark text-decoration-none">phcdc@phcdc.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.phcdc.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.phcdc.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52973" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.2s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">370.</span> PNEUMATIC AND ELECTROPNEUMATICS CONTROL SYSTEM</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN MODAL INSAN PERAK (CAWANGAN MERU) <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:05-5251422" class="text-dark text-decoration-none">05-5251422</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:phcdc@phcdc.edu.my" class="text-dark text-decoration-none">phcdc@phcdc.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.phcdc.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.phcdc.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52976" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.24s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">371.</span> OCCUPATIONAL HEALTH, SAFETY, SECURITY AND ENVIRONMENT IMPLEMENTATION</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52994" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.28s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">372.</span> PEMBAIKAN DAN PENYELENGGARAAN PERALATAN ELEKTRONIK</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=52997" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.32s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">373.</span> PEMASANGAN PERALATAN PENYAMAN UDARA SATU FASA</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53000" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.36s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">374.</span> KONFIGURASI RANGKAIAN KOMPUTER</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53003" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.4s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">375.</span> PEMASANGAN PENYAMAN UDARA SATU FASA</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53006" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.44s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">376.</span> ECP DALAM TEKNOLOGI AUTOMASI</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53009" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.48s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">377.</span> REKABENTUK GRAFIK MENGGUNAKAN ADOBE ILLUSTRATION</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53012" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.52s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">378.</span> HARVESTING TOOLS AND EQUIPMENT</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53015" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.56s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">379.</span> PENYELENGGARAAN SISTEM AUTOMASI INDUSTRI</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>-</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53018" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.6s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">380.</span> HARVESTING ACTIVITY</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>4 Minggu</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53021" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.64s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">381.</span> Aplikasi Rekabentuk Grafik (Digital)</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN SARAWAK <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>1 Bulan</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Sijil Penuh</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:082-539 222" class="text-dark text-decoration-none">082-539 222</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@ppks.edu.my" class="text-dark text-decoration-none">admin@ppks.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.ppks.edu.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.ppks.edu.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53024" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.68s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">382.</span> OPERASI SENI KULINARI</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                KOLEJ YAYASAN NEGERI SEMBILAN <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>12 Bulan</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Sijil Penuh</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:06-481 1225" class="text-dark text-decoration-none">06-481 1225</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:ayuni@kyns.edu.my" class="text-dark text-decoration-none">ayuni@kyns.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong>-</strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53120" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.72s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">383.</span> Pembuatan Pastri</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                KOLEJ YAYASAN NEGERI SEMBILAN <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>12 Bulan</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Sijil Penuh</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:06-481 1225" class="text-dark text-decoration-none">06-481 1225</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:ayuni@kyns.edu.my" class="text-dark text-decoration-none">ayuni@kyns.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong>-</strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53123" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.76s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">384.</span> Pembuatan Pastri</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                KOLEJ YAYASAN NEGERI SEMBILAN <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>12 Bulan</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Sijil Penuh</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:06-481 1225" class="text-dark text-decoration-none">06-481 1225</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:ayuni@kyns.edu.my" class="text-dark text-decoration-none">ayuni@kyns.edu.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong>-</strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53126" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-3 d-flex align-items-stretch">
+                <div class="awam-card awam-course-card h-100 w-100" style="animation-delay: 0.8s;">
+                       
+                                                                                    <img src="https://www.tvet.gov.my/media/jabatan/institusi_tvet.png" class="card-img-top awam-photo awam-course-image" alt="Logo Jabatan">
+                                                                            
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-2">
+                                <span class="awam-chip awam-course-chip"><i class="bi bi-book"></i> Kursus</span>
+                            </div>
+
+                            
+                                                            <h5 class="card-title text-primary fw-bolder text-uppercase awam-course-title"><span class="awam-course-number">385.</span> LUKISAN PEMASANGAN REKA BENTUK BERBANTUKAN KOMPUTER (CAD)  AUTOMASI INDUSTRI</h5>
+                            
+                            <p class="card-text text-uppercase small mb-2 awam-course-institution">
+                                <i class="bi bi-building text-primary me-1"></i>
+                                PUSAT PEMBANGUNAN KEMAHIRAN PERINDUSTRIAN &amp; KEUSAHAWANAN MELAKA (MISDEC) <br> KERAJAAN NEGERI DAN BADAN  BERKANUN                            </p>
+
+                            <div class="small text-black awam-course-meta mb-2">
+                                <div class="mb-1"><i class="bi bi-clock text-primary"></i> Tempoh: <strong>1 Bulan</strong></div>
+                                <div class="mb-1"><i class="bi bi-bookmark text-primary"></i> Kategori: <strong>Micro Credential</strong></div>
+                                <div class="mb-1">
+                                    <i class="bi bi-telephone text-primary"></i> Telefon:
+                                                                            <strong><a href="tel:06-3353576" class="text-dark text-decoration-none">06-3353576</a></strong>
+                                                                    </div>
+                                <div class="mb-1 text-break">
+                                    <i class="bi bi-envelope text-primary"></i> Emel:
+                                                                            <strong><a href="mailto:admin@misdec.org.my" class="text-dark text-decoration-none">admin@misdec.org.my</a></strong>
+                                                                    </div>
+                                <div class="text-break">
+                                    <i class="bi bi-globe2 text-primary"></i> Laman Web:
+                                                                            <strong><a href="https://www.misdec.org.my" class="text-dark text-decoration-none" target="_blank" rel="noopener">www.misdec.org.my</a></strong>
+                                                                    </div>
+                            </div>
+                            <div class="mt-auto text-center pt-2">
+                                <a href="https://www.tvet.gov.my/awam-kursus/kursus?id_kursus=53683" type="button" class="btn btn-primary btn-sm mb-0 mx-1">Info Lengkap</a>
+                                                                
+                                
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+            
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+            <nav>
+        <ul class="pagination">
+            
+                            <li class="page-item">
+                    <a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=13" rel="prev" aria-label="&laquo; Previous">&lsaquo;</a>
+                </li>
+            
+            
+                            
+                
+                
+                                                                                        <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=1">1</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=2">2</a></li>
+                                                                                        
+                                    <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
+                
+                
+                                            
+                
+                
+                                                                                        <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=5">5</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=6">6</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=7">7</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=8">8</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=9">9</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=10">10</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=11">11</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=12">12</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="https://www.tvet.gov.my/awam-agensi/index-kursus?id_agensi=10&amp;page=13">13</a></li>
+                                                                                                <li class="page-item active" aria-current="page"><span class="page-link">14</span></li>
+                                                                        
+            
+                            <li class="page-item disabled" aria-disabled="true" aria-label="Next &raquo;">
+                    <span class="page-link" aria-hidden="true">&rsaquo;</span>
+                </li>
+                    </ul>
+    </nav>
+
+    </div>
+</div>
+
+
+;
+    </div>
+</main>
+
+
+<!-- Back to top -->
+<div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
+
+<!--Footer START (25082025 azah) -->
+<footer class="tvet-footer">
+	<div class="col-md-12">
+        <div class="tvet-footer__content text-center">
+            <div class="tvet-footer__copyright">
+                Portal Rasmi TVET MADANI © 2026 Hak Cipta Terpelihara.
+            </div>
+            <p class="tvet-footer__support">
+                Segala aduan dan masalah, sila e-mel kepada
+                <a href="mailto:up_tvet@mohr.gov.my"
+                   class="email-link">
+                   up_tvet@mohr.gov.my
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- =======================
+Footer END -->
+
+<style>
+  .tvet-footer {
+    padding-top: 3rem;
+  }
+
+  .tvet-footer__content {
+    position: relative;
+    overflow: hidden;
+    padding: 1.35rem 1rem;
+    color: rgba(255, 255, 255, .9);
+    background: linear-gradient(120deg, #ed6878 0%, #4054a3 52%, #27245f 100%);
+    border-top: 4px solid #f58b9a;
+  }
+
+  .tvet-footer__content::after {
+    content: '';
+    position: absolute;
+    right: -45px;
+    bottom: -80px;
+    width: 150px;
+    height: 150px;
+    border: 22px solid rgba(255, 255, 255, .1);
+    border-radius: 50%;
+  }
+
+  .tvet-footer__copyright {
+    position: relative;
+    z-index: 1;
+    font-size: .9rem;
+    font-weight: 700;
+  }
+
+  .tvet-footer__support {
+    position: relative;
+    z-index: 1;
+    margin: .35rem 0 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: .82rem;
+  }
+
+  .email-link {
+    color: #ffd2da;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .email-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+</style>
+
+<!-- Bootstrap JS -->
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- Vendors -->
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="https://www.tvet.gov.my/edufile/assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+
+<!-- Template Functions -->
+<script src="https://www.tvet.gov.my/edufile/assets/js/functions.js"></script>
+</body>
+</html>
+<style>
+    .nav-item.dropdown .dropdown-menu {
+        margin-top: -10px !important;
+        transform: translateY(0) !important;
+        padding-top: 0 !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    .dropdown-menu[data-bs-popper] {
+        top: auto !important;
+    }
+
+        @media (max-width: 1024px) {
+    .dropdown-menu {
+        position: static !important;
+        width: 100% !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        z-index: 1000;
+        display: none !important; /* Set asal, toggle dengan JS */
+    }
+
+    .dropdown-menu.show {
+        display: block !important;
+    }
+    }
+
+    .button-login {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        border: 1px solid rgba(34, 197, 94, 0.5);
+    }
+
+    .button-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(25, 135, 84, 0.5), .125rem .125rem 1rem rgba(34, 197, 94, 0.5);
+    }
+
+    .button-daftar {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        border: 1px solid #b03f1d80;
+    }
+
+    .button-daftar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #b03f1d80, .125rem .125rem 1rem #b03f1d80;
+    }
+</style>

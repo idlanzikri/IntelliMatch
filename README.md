@@ -1,5 +1,14 @@
 # IntelliMatch
 
+## TVET directory and maps
+
+- `docker compose exec app php artisan migrate --force` adds agencies, institution courses and nullable campus/workplace coordinates without resetting records.
+- `docker compose exec app php artisan tvet:import` imports the bundled 3 November 2026 TVET Madani snapshot: 14 agency groups, 1,324 institutions and 5,444 course records. It can be rerun; existing account memberships and manually confirmed campus coordinates are preserved. Existing demo institutions remain separate.
+- Students browse `/training` by course keyword, agency and state; each campus page lists source-linked courses. Administrators access the same directory and confirm campus pins on the detail page. No coordinates are guessed from institution names or town centres.
+- `/opportunities` has a map of all filtered, open, approved, non-remote workplaces. Roles without pins remain in the list. Employers select a workplace on the vacancy form; publishing on-site/hybrid roles requires a valid coordinate pair. Remote roles have no workplace pin. Existing vacancies retain their status and need a pin on their next publication edit.
+- MapLibre GL JS 6.16 is loaded on the client with a separately bundled Vite worker. Maps require WebGL2; a list and coordinate inputs remain available if it cannot initialise. Maps default to attributed OpenStreetMap raster tiles. Set `VITE_MAP_STYLE_URL` to your GIS provider's MapLibre style URL and rebuild to use your company's basemap. Follow the tile provider's usage terms for deployment.
+- Campus coordinates are initially pending: the public snapshot provides addresses, not verified geolocation. Admin confirmation is required before a campus appears on the map. Matching courses to skill gaps and distance-based career ranking are future work.
+
 Vue 3 + TypeScript + Inertia + Laravel, with PostgreSQL and Docker.
 
 ## First run (PowerShell)

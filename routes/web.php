@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DiscoveryController;
+use App\Http\Controllers\JourneyController;
 use App\Http\Controllers\Student\CareerController;
 use App\Http\Controllers\Student\OpportunityController;
+use App\Http\Controllers\TvetDirectoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
@@ -16,6 +18,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__.'/settings.php';
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/training', [TvetDirectoryController::class, 'index']);
+    Route::get('/training/{institution}', [TvetDirectoryController::class, 'show'])->whereNumber('institution');
+    Route::put('/training/{institution}/location', [TvetDirectoryController::class, 'location'])->whereNumber('institution');
+});
 require __DIR__.'/admin.php';
 require __DIR__.'/institution.php';
 
@@ -23,7 +30,7 @@ require __DIR__.'/industry.php';
 
 Route::get('/opportunities', [OpportunityController::class, 'index'])->middleware(['auth', 'verified'])->name('opportunities');
 
-Route::middleware(['auth', 'verified'])->controller(\App\Http\Controllers\JourneyController::class)->group(function () {
+Route::middleware(['auth', 'verified'])->controller(JourneyController::class)->group(function () {
     Route::post('/opportunities/{vacancy}/apply', 'apply');
     Route::get('/student/applications', 'applications');
     Route::get('/student/career-paths', 'paths');

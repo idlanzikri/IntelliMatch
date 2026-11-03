@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vacancy extends Model
 {
-    protected $fillable = ['career_id', 'title', 'description', 'type', 'location', 'arrangement', 'salary_min', 'salary_max', 'qualifications', 'skills', 'closing_date', 'application_url', 'status', 'qualification_level'];
+    protected $fillable = ['latitude', 'longitude', 'career_id', 'title', 'description', 'type', 'location', 'arrangement', 'salary_min', 'salary_max', 'qualifications', 'skills', 'closing_date', 'application_url', 'status', 'qualification_level'];
 
     protected function casts(): array
     {
-        return ['skills' => 'array', 'closing_date' => 'date:Y-m-d'];
+        return ['skills' => 'array', 'closing_date' => 'date:Y-m-d', 'latitude' => 'float', 'longitude' => 'float'];
     }
 
     public function applications(): HasMany

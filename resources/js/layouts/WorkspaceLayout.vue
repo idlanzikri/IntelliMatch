@@ -58,6 +58,7 @@ const navigation = computed(() => {
     if (role.value === "admin")
         return [
             { title: "Overview", href: "/admin", icon: LayoutGrid },
+            { title: "TVET directory", href: "/training", icon: GraduationCap },
             {
                 title: "Company approvals",
                 href: "/admin/companies",
@@ -83,6 +84,7 @@ const navigation = computed(() => {
 
     return [
         { title: "My dashboard", href: "/dashboard", icon: LayoutGrid },
+        { title: "Explore TVET training", href: "/training", icon: GraduationCap },
         { title: "Job opportunities", href: "/opportunities", icon: Compass },
         {
             title: "My career profile",

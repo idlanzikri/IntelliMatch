@@ -76,6 +76,6 @@ class IndustryTest extends TestCase
 
     private function data(string $status): array
     {
-        return ['title' => 'Technician', 'description' => 'Maintain equipment.', 'type' => 'full-time', 'arrangement' => 'on-site', 'location' => 'Melaka', 'skills' => ['Troubleshooting'], 'closing_date' => now()->addDays(7)->toDateString(), 'application_url' => 'https://example.com/apply', 'status' => $status];
+        return ['latitude' => 2.2, 'longitude' => 102.25, 'title' => 'Technician', 'description' => 'Maintain equipment.', 'type' => 'full-time', 'arrangement' => 'on-site', 'location' => 'Melaka', 'skills' => ['Troubleshooting'], 'closing_date' => now()->addDays(7)->toDateString(), 'application_url' => 'https://example.com/apply', 'status' => $status];
     }
 }
